@@ -23,7 +23,7 @@
 		FBE0B82A1A11BB92000180C9 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE0B8201A11BB92000180C9 /* FMDatabasePool.m */; };
 		FBE0B82B1A11BB92000180C9 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE0B8221A11BB92000180C9 /* FMDatabaseQueue.m */; };
 		FBE0B82C1A11BB92000180C9 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE0B8251A11BB92000180C9 /* FMResultSet.m */; };
-		FBE0B82E1A11D649000180C9 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FBE0B82D1A11D649000180C9 /* libsqlite3.dylib */; };
+		FBE0B8301A11FEC1000180C9 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FBE0B82F1A11FEC1000180C9 /* libsqlite3.0.dylib */; };
 		FBEFB3331A08A8060010C92D /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = FBEFB32D1A08A8060010C92D /* Photo.m */; };
 		FBEFB3341A08A8060010C92D /* photodata.bin in Resources */ = {isa = PBXBuildFile; fileRef = FBEFB32E1A08A8060010C92D /* photodata.bin */; };
 		FBEFB3351A08A8060010C92D /* PictureArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FBEFB3301A08A8060010C92D /* PictureArrayDataSource.m */; };
@@ -101,7 +101,7 @@
 		FBE0B8231A11BB92000180C9 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
 		FBE0B8241A11BB92000180C9 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		FBE0B8251A11BB92000180C9 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
-		FBE0B82D1A11D649000180C9 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		FBE0B82F1A11FEC1000180C9 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		FBEFB32C1A08A8060010C92D /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
 		FBEFB32D1A08A8060010C92D /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		FBEFB32E1A08A8060010C92D /* photodata.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = photodata.bin; sourceTree = "<group>"; };
@@ -173,7 +173,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBE0B82E1A11D649000180C9 /* libsqlite3.dylib in Frameworks */,
+				FBE0B8301A11FEC1000180C9 /* libsqlite3.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,7 +203,7 @@
 		FBD678EC1A03595200F7D5B8 = {
 			isa = PBXGroup;
 			children = (
-				FBE0B82D1A11D649000180C9 /* libsqlite3.dylib */,
+				FBE0B82F1A11FEC1000180C9 /* libsqlite3.0.dylib */,
 				FBD678F71A03595200F7D5B8 /* LightApp */,
 				FBD679111A03595200F7D5B8 /* LightAppTests */,
 				FBD678F61A03595200F7D5B8 /* Products */,

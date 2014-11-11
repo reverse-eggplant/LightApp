@@ -33,11 +33,11 @@
 
 
 //推入下一个视图控制器，并把下一个视图控制器需要的信息带过去
-- (void)pushToTheViewController:(NSString *)viewControllerName
++ (void)pushToTheViewController:(NSString *)viewControllerName
                    transferInfo:(id)transferInfo;
 
-- (void)popToLastViewController;
++ (void)popToLastViewController;
 
-- (void)popToRootViewController;
++ (void)popToRootViewController;
 
 @end

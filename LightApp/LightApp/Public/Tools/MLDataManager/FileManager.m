@@ -10,4 +10,26 @@
 
 @implementation FileManager
 
+
+//返回文件存储的数据
++ (NSData *)dataWithFileName:(NSString *)fileName
+{
+    
+    return [NSData dataWithContentsOfFile:CACHEFILEPATH(fileName)];
+}
+
+//返回文件存储的字符串
++ (NSString *)stringWithFileName:(NSString *)fileName{
+    
+    return [NSString stringWithContentsOfFile:CACHEFILEPATH(fileName) usedEncoding:NULL error:NULL];
+}
+
+
+//返回文件存储的字典
++ (NSMutableDictionary *)dictionaryWithFileName:(NSString *)fileName{
+    
+    return   [[NSMutableDictionary alloc]initWithContentsOfFile:CACHEFILEPATH(fileName)];
+    
+}
+
 @end

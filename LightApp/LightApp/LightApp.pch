@@ -16,7 +16,7 @@
 #import "SXViewConrollerManager.h"
 #import "BaseViewController.h"
 #import "BaseTableViewController.h"
-
+#import "FMDB.h"
 #import "ConstantsDefine.h"
 
 #endif

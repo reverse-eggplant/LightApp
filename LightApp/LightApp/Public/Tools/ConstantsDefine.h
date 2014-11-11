@@ -33,11 +33,16 @@
 //十六进制方式设置rgb
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
-#pragma mark 文件及其他资源路径
-//缓存路径
-#define CACHEFILEPATH(fileName) [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:fileName]
 
-#define DOCUMENTFILEPATH(fileName) [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:fileName]
+#pragma mark 文件及其他资源路径
+
+#define DEFAULTFILEMANAGER [NSFileManager defaultManager]       //文件管理器
+
+#define CACHEFILEPATH(fileName) [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:fileName]  //缓存路径
+
+#define DOCUMENTFILEPATH(fileName) [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:fileName]  //文件目录路径
+
+#define ISFILEEXIST(filePath) [DEFAULTFILEMANAGER fileExistsAtPath:filePath]  //判断文件是否存在
 
 
 #define USER_DEFAULT [NSUserDefaults standardUserDefaults]  //实例化

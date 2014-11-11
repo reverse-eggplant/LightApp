@@ -56,33 +56,33 @@
 }
 
 
-- (void)pushToTheViewController:(NSString *)viewControllerName transferInfo:(id)transferInfo{
++ (void)pushToTheViewController:(NSString *)viewControllerName transferInfo:(id)transferInfo{
     
     if (viewControllerName && [NSClassFromString(viewControllerName) isSubclassOfClass:[BaseViewController class]]) {
         BaseViewController * nextvc = [[NSClassFromString(viewControllerName) alloc]init];
         nextvc.pushInfo = transferInfo;
         nextvc.hidesBottomBarWhenPushed = YES;
-        [self.rootViewController.navigationController pushViewController:nextvc animated:YES];
+        [[[[self class] sharedVCMInstance] rootViewController].navigationController pushViewController:nextvc animated:YES];
     }
     
 }
 
 
 
-- (void)popToLastViewController
++ (void)popToLastViewController
 {
     [SXViewConrollerManager clearDelegate];
+    [[[[self class] sharedVCMInstance] rootViewController].navigationController popToRootViewControllerAnimated:YES];
     
-    [self.rootViewController.navigationController popViewControllerAnimated:YES];
     
 }
 
-- (void)popToRootViewController
++ (void)popToRootViewController
 {
     
     [SXViewConrollerManager clearDelegate];
 
-    [self.rootViewController.navigationController popToRootViewControllerAnimated:YES];
+    [[[[self class] sharedVCMInstance] rootViewController].navigationController popToRootViewControllerAnimated:YES];
 }
 
 
