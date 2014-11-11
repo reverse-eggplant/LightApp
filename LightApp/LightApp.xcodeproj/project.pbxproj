@@ -745,7 +745,7 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				GCC_PREFIX_HEADER = "/Users/malong/Desktop/自测demo/其他常用/LightApp/LightApp/LightApp.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/LightApp/LightApp.pch";
 				INFOPLIST_FILE = LightApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -760,7 +760,7 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				GCC_PREFIX_HEADER = "/Users/malong/Desktop/自测demo/其他常用/LightApp/LightApp/LightApp.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/LightApp/LightApp.pch";
 				INFOPLIST_FILE = LightApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
