@@ -14,6 +14,7 @@
 		FBD679061A03595200F7D5B8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBD679051A03595200F7D5B8 /* Images.xcassets */; };
 		FBD679091A03595200F7D5B8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBD679071A03595200F7D5B8 /* LaunchScreen.xib */; };
 		FBD679151A03595200F7D5B8 /* LightAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD679141A03595200F7D5B8 /* LightAppTests.m */; };
+		FBDCBF091A14512300FB8E86 /* DataBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCBF081A14512300FB8E86 /* DataBaseManager.m */; };
 		FBE0B8121A109A1F000180C9 /* NSUserDefaultManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE0B8111A109A1F000180C9 /* NSUserDefaultManager.m */; };
 		FBE0B8151A11B2B0000180C9 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE0B8141A11B2B0000180C9 /* FileManager.m */; };
 		FBE0B8261A11BB92000180C9 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = FBE0B8171A11BB92000180C9 /* LICENSE.txt */; };
@@ -84,6 +85,8 @@
 		FBD679131A03595200F7D5B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBD679141A03595200F7D5B8 /* LightAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LightAppTests.m; sourceTree = "<group>"; };
 		FBD6791F1A035AD600F7D5B8 /* LightApp.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LightApp.pch; sourceTree = "<group>"; };
+		FBDCBF071A14512300FB8E86 /* DataBaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBaseManager.h; sourceTree = "<group>"; };
+		FBDCBF081A14512300FB8E86 /* DataBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBaseManager.m; sourceTree = "<group>"; };
 		FBE0B8101A109A1F000180C9 /* NSUserDefaultManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSUserDefaultManager.h; sourceTree = "<group>"; };
 		FBE0B8111A109A1F000180C9 /* NSUserDefaultManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSUserDefaultManager.m; sourceTree = "<group>"; };
 		FBE0B8131A11B2B0000180C9 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
@@ -196,6 +199,8 @@
 				FBE0B8111A109A1F000180C9 /* NSUserDefaultManager.m */,
 				FBE0B8131A11B2B0000180C9 /* FileManager.h */,
 				FBE0B8141A11B2B0000180C9 /* FileManager.m */,
+				FBDCBF071A14512300FB8E86 /* DataBaseManager.h */,
+				FBDCBF081A14512300FB8E86 /* DataBaseManager.m */,
 			);
 			path = MLDataManager;
 			sourceTree = "<group>";
@@ -583,6 +588,7 @@
 				FBEFB3A51A0A1BDB0010C92D /* UIRefreshControl+AFNetworking.m in Sources */,
 				FBEFB3A61A0A1BDB0010C92D /* UIWebView+AFNetworking.m in Sources */,
 				FBE0B8281A11BB92000180C9 /* FMDatabase.m in Sources */,
+				FBDCBF091A14512300FB8E86 /* DataBaseManager.m in Sources */,
 				FBEFB36A1A0A027A0010C92D /* Animator.m in Sources */,
 				FBEFB3331A08A8060010C92D /* Photo.m in Sources */,
 				FBE0B82C1A11BB92000180C9 /* FMResultSet.m in Sources */,
