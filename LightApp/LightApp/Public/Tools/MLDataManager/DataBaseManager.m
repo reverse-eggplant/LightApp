@@ -91,4 +91,33 @@ static dispatch_once_t once = 0;
 }
 
 
+#pragma mark 数据库操作方法
+
+- (void) createDataBaseWithModelName:(NSString *)modelName{
+    
+    FMResultSet * set = [_dataBase executeQuery:[NSString stringWithFormat:@"select count(*) from sqlite_master where type ='table' and name = '%@'",modelName]];
+    
+    [set next];
+    
+    NSInteger count = [set intForColumnIndex:0];
+    
+    BOOL existTable = !!count;
+    
+    if (existTable) {
+        // TODO:是否更新数据库
+        [AppDelegate showStatusWithText:@"数据库已经存在" duration:2];
+    } else {
+        // TODO: 插入新的数据库
+        NSString * sql = @"CREATE TABLE SUser (uid INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL, name VARCHAR(50), description VARCHAR(100))";
+        BOOL res = [_dataBase executeUpdate:sql];
+        if (!res) {
+            [AppDelegate showStatusWithText:@"数据库创建失败" duration:2];
+        } else {
+            [AppDelegate showStatusWithText:@"数据库创建成功" duration:2];
+        }
+    }
+}
+
+
+
 @end

@@ -19,6 +19,11 @@
 
 @interface AppDelegate ()
 
+@property (nonatomic, strong) UIWindow * statusWindow;
+@property (nonatomic, strong) UILabel * statusLabel;
+
+- (void) dismissStatus;
+
 @end
 
 @implementation AppDelegate
@@ -37,9 +42,23 @@
     
     [self setNavigationBar];
     
+    
+    DBModel * model = [[DBModel alloc]init];
+    NSLog(@"propertyNames = %@",model.propertyNames);
+
+    NSLog(@"propertyVaules = %@",model.propertyVaules);
+
+    NSLog(@"propertiesDic = %@",model.propertiesDic);
+
+    [model setValue:@"userid" forKey:@"modelId"];
+
+    NSLog(@"propertiesDic = %@",model.propertiesDic);
+
+
     [self.window makeKeyAndVisible];
     return YES;
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -109,5 +128,75 @@
 
 }
 
+
+
+/**
+ * @brief 设置自定义状态栏
+ */
+- (void)setStatusWindowAndStatusLabel
+{
+    
+    self.statusWindow = [[UIWindow alloc] initWithFrame:CGRectZero];
+    self.statusWindow.backgroundColor = [UIColor clearColor];
+    self.statusWindow.windowLevel = UIWindowLevelStatusBar + 1;
+    self.statusLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    self.statusLabel.backgroundColor = [UIColor blackColor];
+    self.statusLabel.textColor = [UIColor whiteColor];
+    self.statusLabel.font = [UIFont systemFontOfSize:10.0f];
+    [self.statusWindow addSubview:self.statusLabel];
+    [self.statusWindow makeKeyAndVisible];
+    
+}
+
+/**
+ * @brief 在状态栏显示 一些Log
+ *
+ * @param string 需要显示的内容
+ * @param duration  需要显示多长时间
+ */
++ (void) showStatusWithText:(NSString *) string duration:(NSTimeInterval) duration {
+    
+    AppDelegate * delegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
+    
+    delegate.statusLabel.text = string;
+    [delegate.statusLabel sizeToFit];
+    CGRect rect = [UIApplication sharedApplication].statusBarFrame;
+    CGFloat width = delegate.statusLabel.frame.size.width;
+    CGFloat height = rect.size.height;
+    rect.origin.x = rect.size.width - width - 5;
+    rect.size.width = width;
+    delegate.statusWindow.frame = rect;
+    delegate.statusLabel.frame = CGRectMake(0, 0, width, height);
+    
+    if (duration < 1.0) {
+        duration = 1.0;
+    }
+    if (duration > 4.0) {
+        
+        duration = 4.0;
+    }
+    
+    
+    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW,
+    //                                 (int64_t)(((duration<1.0)?1.0:
+    //                                           (duration>4.0?4.0:duration)))*NSEC_PER_SEC),
+    //                   dispatch_get_main_queue(), ^{
+    //      [self dismissStatus];
+    //
+    //    });
+    
+    [delegate performSelector:@selector(dismissStatus) withObject:nil afterDelay:duration];
+}
+
+/**
+ * @brief 干掉状态栏文字
+ */
+- (void) dismissStatus {
+    CGRect rect = self.statusWindow.frame;
+    rect.origin.y -= rect.size.height;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.statusWindow.frame = rect;
+    }];
+}
 
 @end

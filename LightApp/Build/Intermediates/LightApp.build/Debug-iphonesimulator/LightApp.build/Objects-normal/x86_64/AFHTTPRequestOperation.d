@@ -12,6 +12,7 @@ dependencies: \
   /Users/malong/Desktop/LightApp/LightApp/LightApp/Public/Thirds/FMDB/src/fmdb/FMDatabaseAdditions.h \
   /Users/malong/Desktop/LightApp/LightApp/LightApp/Public/Thirds/FMDB/src/fmdb/FMDatabaseQueue.h \
   /Users/malong/Desktop/LightApp/LightApp/LightApp/Public/Tools/ConstantsDefine.h \
+  /Users/malong/Desktop/LightApp/LightApp/LightApp/Public/Tools/MLDataManager/DBModel.h \
   /Users/malong/Desktop/LightApp/LightApp/LightApp/Public/Thirds/AFNetworking/AFNetworking/AFHTTPRequestOperation.h \
   /Users/malong/Desktop/LightApp/LightApp/LightApp/Public/Thirds/AFNetworking/AFNetworking/AFURLConnectionOperation.h \
   /Users/malong/Desktop/LightApp/LightApp/LightApp/Public/Thirds/AFNetworking/AFNetworking/AFURLRequestSerialization.h \
