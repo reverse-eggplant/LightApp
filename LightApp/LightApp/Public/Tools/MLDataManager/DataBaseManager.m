@@ -119,5 +119,44 @@ static dispatch_once_t once = 0;
 }
 
 
+/**
+ * @brief 保存一条用户记录
+ *
+ * @param user 需要保存的用户数据
+ */
+- (void) saveDataModel:(DBModel *) dataModel{
+    
+    NSMutableString * query = [NSMutableString stringWithFormat:@"INSERT INTO %@",NSStringFromClass([dataModel class])];
+    NSMutableString * keys = [NSMutableString stringWithFormat:@" ("];
+    NSMutableString * values = [NSMutableString stringWithFormat:@" ( "];
+    NSMutableArray * arguments = [NSMutableArray arrayWithCapacity:5];
+    
+    //遍历数组并将数组属性名称拼接
+    for (NSString * propertyName in dataModel.propertyNames) {
+        [keys appendString:[NSString stringWithFormat:@"%@,",propertyName]];
+        [values appendString:@"?,"];
+
+    }
+
+    if (user.name) {
+        [keys appendString:@"name,"];
+        [values appendString:@"?,"];
+        [arguments addObject:user.name];
+    }
+    if (user.description) {
+        [keys appendString:@"description,"];
+        [values appendString:@"?,"];
+        [arguments addObject:user.description];
+    }
+    [keys appendString:@")"];
+    [values appendString:@")"];
+    [query appendFormat:@" %@ VALUES%@",
+     [keys stringByReplacingOccurrencesOfString:@",)" withString:@")"],
+     [values stringByReplacingOccurrencesOfString:@",)" withString:@")"]];
+    NSLog(@"%@",query);
+    [AppDelegate showStatusWithText:@"插入一条数据" duration:2.0];
+    [_db executeUpdate:query withArgumentsInArray:arguments];
+}
+
 
 @end
