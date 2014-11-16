@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		FB02E13D1A0FA40B00414A36 /* ArchiveDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = FB02E13C1A0FA40B00414A36 /* ArchiveDataBase.m */; };
+		FBD5A0711A178C17002314DA /* AFNRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD5A06C1A178C17002314DA /* AFNRequestManager.m */; };
+		FBD5A0721A178C17002314DA /* AFSessionManagerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD5A06E1A178C17002314DA /* AFSessionManagerClient.m */; };
+		FBD5A0761A178C60002314DA /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD5A0751A178C60002314DA /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FBD5A0791A178D8A002314DA /* TestSQLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD5A0781A178D8A002314DA /* TestSQLModel.m */; };
+		FBD5A0811A17AC0B002314DA /* NSObject+DateBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD5A0801A17AC0B002314DA /* NSObject+DateBaseModel.m */; };
 		FBD678FB1A03595200F7D5B8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD678FA1A03595200F7D5B8 /* main.m */; };
 		FBD678FE1A03595200F7D5B8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD678FD1A03595200F7D5B8 /* AppDelegate.m */; };
 		FBD679041A03595200F7D5B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBD679021A03595200F7D5B8 /* Main.storyboard */; };
@@ -15,7 +20,6 @@
 		FBD679091A03595200F7D5B8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBD679071A03595200F7D5B8 /* LaunchScreen.xib */; };
 		FBD679151A03595200F7D5B8 /* LightAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD679141A03595200F7D5B8 /* LightAppTests.m */; };
 		FBDCBF091A14512300FB8E86 /* DataBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCBF081A14512300FB8E86 /* DataBaseManager.m */; };
-		FBDCBF0C1A150C6500FB8E86 /* DBModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDCBF0B1A150C6500FB8E86 /* DBModel.m */; };
 		FBE0B8121A109A1F000180C9 /* NSUserDefaultManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE0B8111A109A1F000180C9 /* NSUserDefaultManager.m */; };
 		FBE0B8151A11B2B0000180C9 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE0B8141A11B2B0000180C9 /* FileManager.m */; };
 		FBE0B8261A11BB92000180C9 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = FBE0B8171A11BB92000180C9 /* LICENSE.txt */; };
@@ -74,6 +78,16 @@
 /* Begin PBXFileReference section */
 		FB02E13B1A0FA40B00414A36 /* ArchiveDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArchiveDataBase.h; sourceTree = "<group>"; };
 		FB02E13C1A0FA40B00414A36 /* ArchiveDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArchiveDataBase.m; sourceTree = "<group>"; };
+		FBD5A06B1A178C17002314DA /* AFNRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNRequestManager.h; sourceTree = "<group>"; };
+		FBD5A06C1A178C17002314DA /* AFNRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNRequestManager.m; sourceTree = "<group>"; };
+		FBD5A06D1A178C17002314DA /* AFSessionManagerClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSessionManagerClient.h; sourceTree = "<group>"; };
+		FBD5A06E1A178C17002314DA /* AFSessionManagerClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSessionManagerClient.m; sourceTree = "<group>"; };
+		FBD5A0741A178C60002314DA /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		FBD5A0751A178C60002314DA /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		FBD5A0771A178D8A002314DA /* TestSQLModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSQLModel.h; sourceTree = "<group>"; };
+		FBD5A0781A178D8A002314DA /* TestSQLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSQLModel.m; sourceTree = "<group>"; };
+		FBD5A07F1A17AC0B002314DA /* NSObject+DateBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DateBaseModel.h"; sourceTree = "<group>"; };
+		FBD5A0801A17AC0B002314DA /* NSObject+DateBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DateBaseModel.m"; sourceTree = "<group>"; };
 		FBD678F51A03595200F7D5B8 /* LightApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD678F91A03595200F7D5B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBD678FA1A03595200F7D5B8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -88,8 +102,6 @@
 		FBD6791F1A035AD600F7D5B8 /* LightApp.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LightApp.pch; sourceTree = "<group>"; };
 		FBDCBF071A14512300FB8E86 /* DataBaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBaseManager.h; sourceTree = "<group>"; };
 		FBDCBF081A14512300FB8E86 /* DataBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBaseManager.m; sourceTree = "<group>"; };
-		FBDCBF0A1A150C6500FB8E86 /* DBModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBModel.h; sourceTree = "<group>"; };
-		FBDCBF0B1A150C6500FB8E86 /* DBModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBModel.m; sourceTree = "<group>"; };
 		FBE0B8101A109A1F000180C9 /* NSUserDefaultManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSUserDefaultManager.h; sourceTree = "<group>"; };
 		FBE0B8111A109A1F000180C9 /* NSUserDefaultManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSUserDefaultManager.m; sourceTree = "<group>"; };
 		FBE0B8131A11B2B0000180C9 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
@@ -204,10 +216,21 @@
 				FBE0B8141A11B2B0000180C9 /* FileManager.m */,
 				FBDCBF071A14512300FB8E86 /* DataBaseManager.h */,
 				FBDCBF081A14512300FB8E86 /* DataBaseManager.m */,
-				FBDCBF0A1A150C6500FB8E86 /* DBModel.h */,
-				FBDCBF0B1A150C6500FB8E86 /* DBModel.m */,
+				FBD5A07F1A17AC0B002314DA /* NSObject+DateBaseModel.h */,
+				FBD5A0801A17AC0B002314DA /* NSObject+DateBaseModel.m */,
 			);
 			path = MLDataManager;
+			sourceTree = "<group>";
+		};
+		FBD5A06A1A178C17002314DA /* AFNManager */ = {
+			isa = PBXGroup;
+			children = (
+				FBD5A06B1A178C17002314DA /* AFNRequestManager.h */,
+				FBD5A06C1A178C17002314DA /* AFNRequestManager.m */,
+				FBD5A06D1A178C17002314DA /* AFSessionManagerClient.h */,
+				FBD5A06E1A178C17002314DA /* AFSessionManagerClient.m */,
+			);
+			path = AFNManager;
 			sourceTree = "<group>";
 		};
 		FBD678EC1A03595200F7D5B8 = {
@@ -335,6 +358,8 @@
 		FBEFB3251A08A6760010C92D /* Thirds */ = {
 			isa = PBXGroup;
 			children = (
+				FBD5A0741A178C60002314DA /* JSONKit.h */,
+				FBD5A0751A178C60002314DA /* JSONKit.m */,
 				FBE0B8161A11BB92000180C9 /* FMDB */,
 				FBEFB36F1A0A1BDB0010C92D /* AFNetworking */,
 			);
@@ -344,6 +369,7 @@
 		FBEFB3261A08A6760010C92D /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				FBD5A06A1A178C17002314DA /* AFNManager */,
 				FB02E13A1A0FA40B00414A36 /* MLDataManager */,
 				FBEFB34A1A09B0ED0010C92D /* ConstantsDefine.h */,
 				FBEFB34D1A09F1880010C92D /* RuntimeClass.h */,
@@ -380,6 +406,8 @@
 				FBEFB3301A08A8060010C92D /* PictureArrayDataSource.m */,
 				FBEFB3311A08A8060010C92D /* Store.h */,
 				FBEFB3321A08A8060010C92D /* Store.m */,
+				FBD5A0771A178D8A002314DA /* TestSQLModel.h */,
+				FBD5A0781A178D8A002314DA /* TestSQLModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -594,9 +622,12 @@
 				FBEFB3A61A0A1BDB0010C92D /* UIWebView+AFNetworking.m in Sources */,
 				FBE0B8281A11BB92000180C9 /* FMDatabase.m in Sources */,
 				FBDCBF091A14512300FB8E86 /* DataBaseManager.m in Sources */,
+				FBD5A0711A178C17002314DA /* AFNRequestManager.m in Sources */,
 				FBEFB36A1A0A027A0010C92D /* Animator.m in Sources */,
 				FBEFB3331A08A8060010C92D /* Photo.m in Sources */,
+				FBD5A0721A178C17002314DA /* AFSessionManagerClient.m in Sources */,
 				FBE0B82C1A11BB92000180C9 /* FMResultSet.m in Sources */,
+				FBD5A0761A178C60002314DA /* JSONKit.m in Sources */,
 				FBEFB3971A0A1BDB0010C92D /* AFHTTPRequestOperationManager.m in Sources */,
 				FBEFB3481A08B54B0010C92D /* BaseViewController.m in Sources */,
 				FBEFB39B1A0A1BDB0010C92D /* AFURLConnectionOperation.m in Sources */,
@@ -616,6 +647,7 @@
 				FBEFB39A1A0A1BDB0010C92D /* AFSecurityPolicy.m in Sources */,
 				FBEFB3361A08A8060010C92D /* Store.m in Sources */,
 				FBE0B8291A11BB92000180C9 /* FMDatabaseAdditions.m in Sources */,
+				FBD5A0811A17AC0B002314DA /* NSObject+DateBaseModel.m in Sources */,
 				FBEFB3A31A0A1BDB0010C92D /* UIImageView+AFNetworking.m in Sources */,
 				FBEFB3991A0A1BDB0010C92D /* AFNetworkReachabilityManager.m in Sources */,
 				FBEFB39E1A0A1BDB0010C92D /* AFURLSessionManager.m in Sources */,
@@ -626,9 +658,9 @@
 				FBD678FB1A03595200F7D5B8 /* main.m in Sources */,
 				FBEFB35E1A0A00470010C92D /* PhotoTableViewController.m in Sources */,
 				FBEFB39D1A0A1BDB0010C92D /* AFURLResponseSerialization.m in Sources */,
-				FBDCBF0C1A150C6500FB8E86 /* DBModel.m in Sources */,
 				FBEFB3A21A0A1BDB0010C92D /* UIButton+AFNetworking.m in Sources */,
 				FBEFB34F1A09F1880010C92D /* RuntimeClass.m in Sources */,
+				FBD5A0791A178D8A002314DA /* TestSQLModel.m in Sources */,
 				FBE0B82A1A11BB92000180C9 /* FMDatabasePool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

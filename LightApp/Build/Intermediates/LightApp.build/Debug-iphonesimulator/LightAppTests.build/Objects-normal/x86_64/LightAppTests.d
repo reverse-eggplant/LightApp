@@ -1,5 +1,5 @@
 dependencies: \
-  /Users/malong/Desktop/自测demo/其他常用/LightApp/LightAppTests/LightAppTests.m \
+  /Users/malong/Desktop/LightApp/LightApp/LightAppTests/LightAppTests.m \
   /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/Headers/XCTestSuiteRun.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/Headers/XCTestSuite.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/Headers/XCTestProbe.h \

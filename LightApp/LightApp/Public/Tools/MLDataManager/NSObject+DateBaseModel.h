@@ -1,22 +1,22 @@
 //
-//  DBModel.h
+//  NSObject+DateBaseModel.h
 //  LightApp
 //
-//  Created by malong on 14/11/13.
+//  Created by malong on 14/11/15.
 //  Copyright (c) 2014年 malong. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 
-
 /**
- * @brief 数据库模型基类，其他所有数据库存储对象都继承于它
+ * @brief 数据库模型类目
  */
 
-@interface DBModel : NSObject
 
-@property (nonatomic, copy) NSString * modelId; //可存入数据库的模型标示id
+@interface NSObject (DateBaseModel)
+
+
 
 
 /**
@@ -34,5 +34,6 @@
  * @brief 属性对应值数组
  */
 - (NSMutableArray*)propertyVaules;
+
 
 @end

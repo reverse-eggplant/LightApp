@@ -1,26 +1,14 @@
 //
-//  DBModel.m
+//  NSObject+DateBaseModel.m
 //  LightApp
 //
-//  Created by malong on 14/11/13.
+//  Created by malong on 14/11/15.
 //  Copyright (c) 2014年 malong. All rights reserved.
 //
 
-#import "DBModel.h"
+#import "NSObject+DateBaseModel.h"
 
-
-@implementation DBModel
-
-- (id)init{
-    self = [super init];
-    
-    if (self) {
-        
-    }
-    
-    return self;
-    
-}
+@implementation NSObject (DateBaseModel)
 
 - (NSDictionary *)propertiesDic {
     
@@ -41,6 +29,7 @@
 
 
 - (NSMutableArray*)propertyNames{
+    
     unsigned int outCount, i;
     
     objc_property_t * properties = class_copyPropertyList([self class], &outCount);
@@ -69,7 +58,7 @@
     NSMutableArray * propertyVaules = [NSMutableArray arrayWithCapacity:propertyNames.count];
     
     for (int i = 0; i<propertyNames.count; i++) {
-
+        
         id propertyValue = [self valueForKey:[propertyNames objectAtIndex:i]];
         
         if (nil != propertyValue) {
@@ -79,6 +68,5 @@
     
     return propertyVaules;
 }
-
 
 @end

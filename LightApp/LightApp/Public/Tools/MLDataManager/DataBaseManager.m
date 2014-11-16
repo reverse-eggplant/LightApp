@@ -93,9 +93,12 @@ static dispatch_once_t once = 0;
 
 #pragma mark 数据库操作方法
 
-- (void) createDataBaseWithModelName:(NSString *)modelName{
++ (void) createDataBaseWithDBModel:(NSObject *)dbModel
+{
     
-    FMResultSet * set = [_dataBase executeQuery:[NSString stringWithFormat:@"select count(*) from sqlite_master where type ='table' and name = '%@'",modelName]];
+    NSString * modelClassName = NSStringFromClass([dbModel class]);
+    
+    FMResultSet * set = [[[[self class] defaultDataBaseManager] dataBase] executeQuery:[NSString stringWithFormat:@"select count(*) from sqlite_master where type ='table' and name = '%@'",modelClassName]];
     
     [set next];
     
@@ -108,8 +111,17 @@ static dispatch_once_t once = 0;
         [AppDelegate showStatusWithText:@"数据库已经存在" duration:2];
     } else {
         // TODO: 插入新的数据库
-        NSString * sql = @"CREATE TABLE SUser (uid INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL, name VARCHAR(50), description VARCHAR(100))";
-        BOOL res = [_dataBase executeUpdate:sql];
+        
+        NSMutableString * sql = [NSMutableString stringWithFormat:@"CREATE TABLE %@ (",modelClassName];
+        
+        for (NSString *  propertyName in dbModel.propertyNames) {
+            [sql appendFormat:@"%@,",propertyName];
+        }
+        [sql appendFormat:@")"];
+        
+        
+        
+        BOOL res = [[[[self class] defaultDataBaseManager] dataBase] executeUpdate:[sql stringByReplacingOccurrencesOfString:@",)" withString:@")"]];
         if (!res) {
             [AppDelegate showStatusWithText:@"数据库创建失败" duration:2];
         } else {
@@ -124,30 +136,29 @@ static dispatch_once_t once = 0;
  *
  * @param user 需要保存的用户数据
  */
-- (void) saveDataModel:(DBModel *) dataModel{
-    
-    NSMutableString * query = [NSMutableString stringWithFormat:@"INSERT INTO %@",NSStringFromClass([dataModel class])];
++ (void) saveDataWithMDBModel:(NSObject *) dbModel
+{
+    NSString * modelClassName = NSStringFromClass([dbModel class]);
+
+    //编辑插入语句
+    NSMutableString * query = [NSMutableString stringWithFormat:@"INSERT INTO %@",modelClassName];
     NSMutableString * keys = [NSMutableString stringWithFormat:@" ("];
     NSMutableString * values = [NSMutableString stringWithFormat:@" ( "];
-    NSMutableArray * arguments = [NSMutableArray arrayWithCapacity:5];
+    NSMutableArray * arguments = [NSMutableArray arrayWithCapacity:dbModel.propertyNames.count];
     
     //遍历数组并将数组属性名称拼接
-    for (NSString * propertyName in dataModel.propertyNames) {
+    for (NSString * propertyName in dbModel.propertyNames) {
         [keys appendString:[NSString stringWithFormat:@"%@,",propertyName]];
         [values appendString:@"?,"];
+        //添加数据
+        if ([dbModel valueForKey:propertyName]) {
+            [arguments addObject:[dbModel valueForKey:propertyName]];
+        }else{
+            [arguments addObject:[NSNull new]];
+        }
 
     }
 
-    if (user.name) {
-        [keys appendString:@"name,"];
-        [values appendString:@"?,"];
-        [arguments addObject:user.name];
-    }
-    if (user.description) {
-        [keys appendString:@"description,"];
-        [values appendString:@"?,"];
-        [arguments addObject:user.description];
-    }
     [keys appendString:@")"];
     [values appendString:@")"];
     [query appendFormat:@" %@ VALUES%@",
@@ -155,8 +166,124 @@ static dispatch_once_t once = 0;
      [values stringByReplacingOccurrencesOfString:@",)" withString:@")"]];
     NSLog(@"%@",query);
     [AppDelegate showStatusWithText:@"插入一条数据" duration:2.0];
-    [_db executeUpdate:query withArgumentsInArray:arguments];
+    [[[[self class] defaultDataBaseManager] dataBase] executeUpdate:query withArgumentsInArray:arguments];
+    
+    
 }
 
+
+/**
+ * @brief 删除一条用户数据
+ *
+ * @param modelName 需要删除的数据模型的名称
+ * @param keyName   需要删除的数据模型的主键名称
+ * @param keyValue  需要删除的数据模型的主键
+ */
++ (void) deleteDataModelWithModelName:(NSString *)modelName
+                              keyName:(NSString *)keyName
+                             keyValue:(id) keyValue
+{
+    NSString * query = [NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ = '%@'",modelName,keyName,keyValue];
+    DLog(@"%@",query);
+
+    if ([[[[self class] defaultDataBaseManager] dataBase] executeUpdate:query])
+        [AppDelegate showStatusWithText:@"删除数据成功" duration:2.0];
+}
+
+
+/**
+ * @brief 以keyName为查询条件，更新主键值为keyValue的数据对象的值
+ *
+ * @param dbModel 所要修改的数据源
+ */
++ (void) mergeWithDBModel:(NSObject *)dbModel
+                  keyName:(NSString *)keyName
+                 keyValue:(id) keyValue
+{
+    
+    NSString * modelClassName = NSStringFromClass([dbModel class]);
+
+    NSMutableString * query = [NSMutableString stringWithFormat:@"UPDATE %@ SET",modelClassName];
+    
+    //遍历对象的属性数组，并从新赋值
+    for (NSString *  propertyName in dbModel.propertyNames) {
+        [query appendFormat:@" %@ = '%@',",propertyName,[dbModel valueForKey:propertyName]];
+    }
+    [query appendString:@")"];
+    [query appendFormat:@" WHERE %@ = '%@'",keyName,keyValue];
+
+    NSString * sql = [NSString stringWithFormat:@"%@",query];
+    sql = [sql stringByReplacingOccurrencesOfString:@",)" withString:@""];
+    DLog(@"%@",sql);
+    
+   
+    if([[[[self class] defaultDataBaseManager] dataBase] executeUpdate:sql])
+         [AppDelegate showStatusWithText:@"成功修改了数据" duration:2.0];
+    
+
+}
+
+
+/**
+ * @brief 模拟分页查找数据。取modelId大于某个值以后的limit个数据
+ *
+ * @param modelName 需要查询的数据模型的名称
+ * @param keyName   需要删除的数据模型的主键名称
+ * @param keyValue  需要删除的数据模型的主键值
+ * @param limit 每页取多少个
+ */
++ (NSArray *) findWithModelName:(NSString *)modelName
+                        keyName:(NSString *) keyName
+                       keyValue:(id)keyValue
+                          limit:(int) limit
+{
+    
+    if (!keyName) {
+        [AppDelegate showStatusWithText:@"缺少查询条件！" duration:2.0];
+        return nil;
+    }
+    
+    
+    NSMutableString * temp = [NSMutableString stringWithFormat:@"SELECT "];
+    NSObject * dbModel = [[NSClassFromString(modelName) alloc]init];
+    //遍历对象的属性数组，拼接查询语句
+    for (NSString *  propertyName in dbModel.propertyNames) {
+        [temp appendFormat:@"%@,",propertyName];
+    }
+    [temp appendString:@")"];
+    
+    
+    NSMutableString * temp2 = [NSMutableString stringWithFormat:@"%@",[temp stringByReplacingOccurrencesOfString:@",)" withString:@" "]];
+    [temp2 appendFormat:@"FROM %@",modelName];
+    
+    
+    NSMutableString * query = [NSMutableString stringWithFormat:@"%@",[temp2 stringByAppendingFormat:@" WHERE %@ = %@ ORDER BY %@ DESC limit %d",keyName,keyValue,keyName,limit]];
+    
+    DLog(@"%@",query);
+
+    //根据查询语句饿查询
+    FMResultSet * set = [[[[self class] defaultDataBaseManager] dataBase] executeQuery:query];
+    NSMutableArray * results = [NSMutableArray arrayWithCapacity:[set columnCount]];
+    
+    
+    //根据查询结果，生成对象，放入数组并返回
+    while ([set next]) {
+        
+        NSObject * obj = [[NSClassFromString(modelName) alloc]init];
+        
+        for (NSString *  propertyName in obj.propertyNames) {
+            [obj setValue:[set objectForColumnName:propertyName] forKey:propertyName];
+        }
+        
+        [results addObject:obj];
+        
+    }
+    [set close];
+    DLog(@"results.count = %lu",(unsigned long)results.count);
+    
+    return results;
+    
+
+}
 
 @end

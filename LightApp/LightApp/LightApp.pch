@@ -18,7 +18,8 @@
 #import "BaseTableViewController.h"
 #import "FMDB.h"
 #import "ConstantsDefine.h"
-#import "DBModel.h"
+#import "DataBaseManager.h"
+#import "NSObject+DateBaseModel.h"
 
 #endif
 

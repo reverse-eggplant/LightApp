@@ -3,9 +3,12 @@
 /Users/malong/Desktop/LightApp/LightApp/Build/Intermediates/LightApp.build/Debug-iphonesimulator/LightApp.build/Objects-normal/x86_64/UIWebView+AFNetworking.o
 /Users/malong/Desktop/LightApp/LightApp/Build/Intermediates/LightApp.build/Debug-iphonesimulator/LightApp.build/Objects-normal/x86_64/FMDatabase.o
 /Users/malong/Desktop/LightApp/LightApp/Build/Intermediates/LightApp.build/Debug-iphonesimulator/LightApp.build/Objects-normal/x86_64/DataBaseManager.o
+/Users/malong/Desktop/LightApp/LightApp/Build/Intermediates/LightApp.build/Debug-iphonesimulator/LightApp.build/Objects-normal/x86_64/AFNRequestManager.o
 /Users/malong/Desktop/LightApp/LightApp/Build/Intermediates/LightApp.build/Debug-iphonesimulator/LightApp.build/Objects-normal/x86_64/Animator.o
 /Users/malong/Desktop/LightApp/LightApp/Build/Intermediates/LightApp.build/Debug-iphonesimulator/LightApp.build/Objects-normal/x86_64/Photo.o
+/Users/malong/Desktop/LightApp/LightApp/Build/Intermediates/LightApp.build/Debug-iphonesimulator/LightApp.build/Objects-normal/x86_64/AFSessionManagerClient.o
 /Users/malong/Desktop/LightApp/LightApp/Build/Intermediates/LightApp.build/Debug-iphonesimulator/LightApp.build/Objects-normal/x86_64/FMResultSet.o
+/Users/malong/Desktop/LightApp/LightApp/Build/Intermediates/LightApp.build/Debug-iphonesimulator/LightApp.build/Objects-normal/x86_64/JSONKit.o
 /Users/malong/Desktop/LightApp/LightApp/Build/Intermediates/LightApp.build/Debug-iphonesimulator/LightApp.build/Objects-normal/x86_64/AFHTTPRequestOperationManager.o
 /Users/malong/Desktop/LightApp/LightApp/Build/Intermediates/LightApp.build/Debug-iphonesimulator/LightApp.build/Objects-normal/x86_64/BaseViewController.o
 /Users/malong/Desktop/LightApp/LightApp/Build/Intermediates/LightApp.build/Debug-iphonesimulator/LightApp.build/Objects-normal/x86_64/AFURLConnectionOperation.o
@@ -24,6 +27,7 @@
 /Users/malong/Desktop/LightApp/LightApp/Build/Intermediates/LightApp.build/Debug-iphonesimulator/LightApp.build/Objects-normal/x86_64/AFSecurityPolicy.o
 /Users/malong/Desktop/LightApp/LightApp/Build/Intermediates/LightApp.build/Debug-iphonesimulator/LightApp.build/Objects-normal/x86_64/Store.o
 /Users/malong/Desktop/LightApp/LightApp/Build/Intermediates/LightApp.build/Debug-iphonesimulator/LightApp.build/Objects-normal/x86_64/FMDatabaseAdditions.o
+/Users/malong/Desktop/LightApp/LightApp/Build/Intermediates/LightApp.build/Debug-iphonesimulator/LightApp.build/Objects-normal/x86_64/NSObject+DateBaseModel.o
 /Users/malong/Desktop/LightApp/LightApp/Build/Intermediates/LightApp.build/Debug-iphonesimulator/LightApp.build/Objects-normal/x86_64/UIImageView+AFNetworking.o
 /Users/malong/Desktop/LightApp/LightApp/Build/Intermediates/LightApp.build/Debug-iphonesimulator/LightApp.build/Objects-normal/x86_64/AFNetworkReachabilityManager.o
 /Users/malong/Desktop/LightApp/LightApp/Build/Intermediates/LightApp.build/Debug-iphonesimulator/LightApp.build/Objects-normal/x86_64/AFURLSessionManager.o
@@ -34,7 +38,7 @@
 /Users/malong/Desktop/LightApp/LightApp/Build/Intermediates/LightApp.build/Debug-iphonesimulator/LightApp.build/Objects-normal/x86_64/main.o
 /Users/malong/Desktop/LightApp/LightApp/Build/Intermediates/LightApp.build/Debug-iphonesimulator/LightApp.build/Objects-normal/x86_64/PhotoTableViewController.o
 /Users/malong/Desktop/LightApp/LightApp/Build/Intermediates/LightApp.build/Debug-iphonesimulator/LightApp.build/Objects-normal/x86_64/AFURLResponseSerialization.o
-/Users/malong/Desktop/LightApp/LightApp/Build/Intermediates/LightApp.build/Debug-iphonesimulator/LightApp.build/Objects-normal/x86_64/DBModel.o
 /Users/malong/Desktop/LightApp/LightApp/Build/Intermediates/LightApp.build/Debug-iphonesimulator/LightApp.build/Objects-normal/x86_64/UIButton+AFNetworking.o
 /Users/malong/Desktop/LightApp/LightApp/Build/Intermediates/LightApp.build/Debug-iphonesimulator/LightApp.build/Objects-normal/x86_64/RuntimeClass.o
+/Users/malong/Desktop/LightApp/LightApp/Build/Intermediates/LightApp.build/Debug-iphonesimulator/LightApp.build/Objects-normal/x86_64/TestSQLModel.o
 /Users/malong/Desktop/LightApp/LightApp/Build/Intermediates/LightApp.build/Debug-iphonesimulator/LightApp.build/Objects-normal/x86_64/FMDatabasePool.o

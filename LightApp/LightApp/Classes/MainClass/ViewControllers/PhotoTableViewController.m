@@ -17,6 +17,8 @@
 #import "Store.h"
 #import "Photo.h"
 
+
+
 static NSString * const PhotoTableViewControllerCellIdentifier = @"PhotoTableViewControllerCellIdentifier";
 
 
@@ -40,6 +42,8 @@ static NSString * const PhotoTableViewControllerCellIdentifier = @"PhotoTableVie
     DLog(@"1");
     self.navigationItem.title = @"Pictures";
     [self setupTableView];
+    
+
     
 }
 

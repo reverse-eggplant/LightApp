@@ -17,6 +17,8 @@
 
 #import "Store.h"
 
+#import "TestSQLModel.h"
+
 @interface AppDelegate ()
 
 @property (nonatomic, strong) UIWindow * statusWindow;
@@ -41,19 +43,7 @@
     [self.window setRootViewController:navigationController];
     
     [self setNavigationBar];
-    
-    
-    DBModel * model = [[DBModel alloc]init];
-    NSLog(@"propertyNames = %@",model.propertyNames);
-
-    NSLog(@"propertyVaules = %@",model.propertyVaules);
-
-    NSLog(@"propertiesDic = %@",model.propertiesDic);
-
-    [model setValue:@"userid" forKey:@"modelId"];
-
-    NSLog(@"propertiesDic = %@",model.propertiesDic);
-
+    [self setStatusWindowAndStatusLabel];
 
     [self.window makeKeyAndVisible];
     return YES;

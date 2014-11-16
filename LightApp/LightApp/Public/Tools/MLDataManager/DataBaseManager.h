@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FMDatabaseAdditions.h"
-#import "DBModel.h"
+//#import "DBModel.h"
 
 
 typedef enum{
@@ -42,16 +42,16 @@ typedef enum{
 /**
  * @brief 创建数据库
  */
-- (void) createDataBaseWithModelName:(NSString *)modelName;
++ (void) createDataBaseWithDBModel:(NSObject *)dbModel;
 
 
 
 /**
  * @brief 保存一条用户记录
  *
- * @param dataModel 需要保存的数据模型
+ * @param dbModel 需要保存的数据模型
  */
-- (void) saveDataModel:(DBModel *) dataModel;
++ (void) saveDataWithMDBModel:(NSObject *) dbModel;
 
 
 
@@ -59,18 +59,23 @@ typedef enum{
  * @brief 删除一条用户数据
  *
  * @param modelName 需要删除的数据模型的名称
- * @param key 需要删除的数据模型的主键
+ * @param keyName   需要删除的数据模型的主键名称
+ * @param keyValue  需要删除的数据模型的主键值
  */
-- (void) deleteDataModelWithModelName:(NSString *)modelName key:(NSString *) key;
++ (void) deleteDataModelWithModelName:(NSString *)modelName
+                              keyName:(NSString *)keyName
+                             keyValue:(id) keyValue;
 
 
 
 /**
- * @brief 修改用户的信息
+ * @brief 以keyName为查询条件，更新主键值为keyValue的数据对象的值
  *
- * @param dataModel 需要修改的数据模型
+ * @param dbModel 所要修改的数据源
  */
-- (void) mergeWithDataModel:(DBModel *) dataModel;
++ (void) mergeWithDBModel:(NSObject *)dbModel
+                    keyName:(NSString *)keyName
+                   keyValue:(id) keyValue;
 
 
 
@@ -78,10 +83,14 @@ typedef enum{
  * @brief 模拟分页查找数据。取modelId大于某个值以后的limit个数据
  *
  * @param modelName 需要查询的数据模型的名称
- * @param key 需要查询的数据模型的主键
+ * @param keyName   需要删除的数据模型的主键名称
+ * @param keyValue  需要删除的数据模型的主键值
  * @param limit 每页取多少个
  */
-- (NSArray *) findWithModelName:(NSString *)modelName key:(NSString *) key limit:(int) limit;
++ (NSArray *) findWithModelName:(NSString *)modelName
+                        keyName:(NSString *) keyName
+                       keyValue:(id)keyValue
+                          limit:(int) limit;
 
 
 
