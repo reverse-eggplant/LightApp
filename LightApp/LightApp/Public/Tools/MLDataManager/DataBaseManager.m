@@ -183,7 +183,7 @@ static dispatch_once_t once = 0;
                               keyName:(NSString *)keyName
                              keyValue:(id) keyValue
 {
-    NSString * query = [NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ = '%@'",modelName,keyName,keyValue];
+    NSString * query = [NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ = %@",modelName,keyName,keyValue];
     DLog(@"%@",query);
 
     if ([[[[self class] defaultDataBaseManager] dataBase] executeUpdate:query])
@@ -207,10 +207,10 @@ static dispatch_once_t once = 0;
     
     //遍历对象的属性数组，并从新赋值
     for (NSString *  propertyName in dbModel.propertyNames) {
-        [query appendFormat:@" %@ = '%@',",propertyName,[dbModel valueForKey:propertyName]];
+        [query appendFormat:@" %@ = %@,",propertyName,[dbModel valueForKey:propertyName]];
     }
     [query appendString:@")"];
-    [query appendFormat:@" WHERE %@ = '%@'",keyName,keyValue];
+    [query appendFormat:@" WHERE %@ = %@",keyName,keyValue];
 
     NSString * sql = [NSString stringWithFormat:@"%@",query];
     sql = [sql stringByReplacingOccurrencesOfString:@",)" withString:@""];

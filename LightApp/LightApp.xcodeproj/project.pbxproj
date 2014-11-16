@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		FB02E13D1A0FA40B00414A36 /* ArchiveDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = FB02E13C1A0FA40B00414A36 /* ArchiveDataBase.m */; };
+		FBD24E031A18D6A60086D8D5 /* DeviceIdentifierTool.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD24DFE1A18D6A60086D8D5 /* DeviceIdentifierTool.m */; };
+		FBD24E041A18D6A60086D8D5 /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD24E011A18D6A60086D8D5 /* OpenUDID.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FBD24E051A18D6A60086D8D5 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = FBD24E021A18D6A60086D8D5 /* README.md */; };
 		FBD5A0711A178C17002314DA /* AFNRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD5A06C1A178C17002314DA /* AFNRequestManager.m */; };
 		FBD5A0721A178C17002314DA /* AFSessionManagerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD5A06E1A178C17002314DA /* AFSessionManagerClient.m */; };
 		FBD5A0761A178C60002314DA /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD5A0751A178C60002314DA /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -78,6 +81,11 @@
 /* Begin PBXFileReference section */
 		FB02E13B1A0FA40B00414A36 /* ArchiveDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArchiveDataBase.h; sourceTree = "<group>"; };
 		FB02E13C1A0FA40B00414A36 /* ArchiveDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArchiveDataBase.m; sourceTree = "<group>"; };
+		FBD24DFD1A18D6A60086D8D5 /* DeviceIdentifierTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceIdentifierTool.h; sourceTree = "<group>"; };
+		FBD24DFE1A18D6A60086D8D5 /* DeviceIdentifierTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceIdentifierTool.m; sourceTree = "<group>"; };
+		FBD24E001A18D6A60086D8D5 /* OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDID.h; sourceTree = "<group>"; };
+		FBD24E011A18D6A60086D8D5 /* OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDID.m; sourceTree = "<group>"; };
+		FBD24E021A18D6A60086D8D5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		FBD5A06B1A178C17002314DA /* AFNRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNRequestManager.h; sourceTree = "<group>"; };
 		FBD5A06C1A178C17002314DA /* AFNRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNRequestManager.m; sourceTree = "<group>"; };
 		FBD5A06D1A178C17002314DA /* AFSessionManagerClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSessionManagerClient.h; sourceTree = "<group>"; };
@@ -220,6 +228,26 @@
 				FBD5A0801A17AC0B002314DA /* NSObject+DateBaseModel.m */,
 			);
 			path = MLDataManager;
+			sourceTree = "<group>";
+		};
+		FBD24DFC1A18D6A60086D8D5 /* DeviceIdentifier */ = {
+			isa = PBXGroup;
+			children = (
+				FBD24DFD1A18D6A60086D8D5 /* DeviceIdentifierTool.h */,
+				FBD24DFE1A18D6A60086D8D5 /* DeviceIdentifierTool.m */,
+				FBD24DFF1A18D6A60086D8D5 /* OpenUDID */,
+			);
+			path = DeviceIdentifier;
+			sourceTree = "<group>";
+		};
+		FBD24DFF1A18D6A60086D8D5 /* OpenUDID */ = {
+			isa = PBXGroup;
+			children = (
+				FBD24E001A18D6A60086D8D5 /* OpenUDID.h */,
+				FBD24E011A18D6A60086D8D5 /* OpenUDID.m */,
+				FBD24E021A18D6A60086D8D5 /* README.md */,
+			);
+			path = OpenUDID;
 			sourceTree = "<group>";
 		};
 		FBD5A06A1A178C17002314DA /* AFNManager */ = {
@@ -369,6 +397,7 @@
 		FBEFB3261A08A6760010C92D /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				FBD24DFC1A18D6A60086D8D5 /* DeviceIdentifier */,
 				FBD5A06A1A178C17002314DA /* AFNManager */,
 				FB02E13A1A0FA40B00414A36 /* MLDataManager */,
 				FBEFB34A1A09B0ED0010C92D /* ConstantsDefine.h */,
@@ -623,6 +652,7 @@
 				FBE0B8281A11BB92000180C9 /* FMDatabase.m in Sources */,
 				FBDCBF091A14512300FB8E86 /* DataBaseManager.m in Sources */,
 				FBD5A0711A178C17002314DA /* AFNRequestManager.m in Sources */,
+				FBD24E051A18D6A60086D8D5 /* README.md in Sources */,
 				FBEFB36A1A0A027A0010C92D /* Animator.m in Sources */,
 				FBEFB3331A08A8060010C92D /* Photo.m in Sources */,
 				FBD5A0721A178C17002314DA /* AFSessionManagerClient.m in Sources */,
@@ -635,6 +665,7 @@
 				FBEFB33F1A08A8200010C92D /* PictureDataTableViewCell.m in Sources */,
 				FBEFB3A01A0A1BDB0010C92D /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				FBEFB3351A08A8060010C92D /* PictureArrayDataSource.m in Sources */,
+				FBD24E041A18D6A60086D8D5 /* OpenUDID.m in Sources */,
 				FBEFB39C1A0A1BDB0010C92D /* AFURLRequestSerialization.m in Sources */,
 				FBEFB3551A09FA780010C92D /* BaseTableViewController.m in Sources */,
 				FBEFB3981A0A1BDB0010C92D /* AFHTTPSessionManager.m in Sources */,
@@ -657,6 +688,7 @@
 				FBEFB36E1A0A0CE90010C92D /* PhotoDetailViewController.m in Sources */,
 				FBD678FB1A03595200F7D5B8 /* main.m in Sources */,
 				FBEFB35E1A0A00470010C92D /* PhotoTableViewController.m in Sources */,
+				FBD24E031A18D6A60086D8D5 /* DeviceIdentifierTool.m in Sources */,
 				FBEFB39D1A0A1BDB0010C92D /* AFURLResponseSerialization.m in Sources */,
 				FBEFB3A21A0A1BDB0010C92D /* UIButton+AFNetworking.m in Sources */,
 				FBEFB34F1A09F1880010C92D /* RuntimeClass.m in Sources */,
