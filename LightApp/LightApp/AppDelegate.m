@@ -90,7 +90,8 @@
 
     [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0x067AB5)]; //ios7以后，使用这个方法设置导航栏的颜色
     
-    [UINavigationBar appearance].translucent = NO;    //关闭模糊效果
+    //真机调试时，ios7.1里面不能通过如下方法translucent设置为NO
+//    [UINavigationBar appearance].translucent = NO;    //关闭模糊效果
     
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];   //给返回按钮着色
 

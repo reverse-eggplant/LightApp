@@ -11,7 +11,7 @@
 
 @property (nonatomic,strong)NSDate * date;
 
-@property (nonatomic,assign)NSNumber * number;
+@property (nonatomic,strong)NSNumber * number;
 
 @property (nonatomic,copy)NSData * data;
 

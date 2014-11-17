@@ -207,7 +207,7 @@ static dispatch_once_t once = 0;
     
     //遍历对象的属性数组，并从新赋值
     for (NSString *  propertyName in dbModel.propertyNames) {
-        [query appendFormat:@" %@ = %@,",propertyName,[dbModel valueForKey:propertyName]];
+        [query appendFormat:@" %@ = %@,",propertyName,[dbModel valueForKeyPath:propertyName]];
     }
     [query appendString:@")"];
     [query appendFormat:@" WHERE %@ = %@",keyName,keyValue];

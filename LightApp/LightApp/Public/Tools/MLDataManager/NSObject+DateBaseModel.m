@@ -11,7 +11,7 @@
 @implementation NSObject (DateBaseModel)
 
 - (NSDictionary *)propertiesDic {
-    
+
     NSMutableDictionary *props = [NSMutableDictionary dictionary];
     unsigned int outCount, i;
     
@@ -25,6 +25,8 @@
     }
     free(properties);
     return props;
+    
+//    return [self dictionaryWithValuesForKeys:[self propertyNames]];
 }
 
 
@@ -67,6 +69,84 @@
     }
     
     return propertyVaules;
+//    return [[self propertiesDic] allValues];
 }
+
+
+/**
+ * @brief 获取对象的所有方法信息
+ */
+-(NSArray *)mothodLists
+{
+    unsigned int mothCout =0;
+    
+    //获取方法列表
+    Method* methodList = class_copyMethodList([self class],&mothCout);
+    
+    //创建存储方法信息的数组
+    NSMutableArray * methodlists = [NSMutableArray array];
+    
+    //遍历数组，提取每个方法的信息
+    for(int i=0;i<mothCout;i++)
+    {
+        //获取方法
+        Method method = methodList[i];
+//        IMP imp_f = method_getImplementation(temp_f);
+//        SEL name_f = method_getName(temp_f);
+        
+        //创建方法信息字典
+        NSMutableDictionary * methodInfo = [NSMutableDictionary dictionary];
+        
+        
+        //获取方法名
+        const char * name =sel_getName(method_getName(method));
+        NSString * methodName = [NSString stringWithUTF8String:name];
+        [methodInfo setValue:methodName forKey:@"methodName"];
+        
+        
+        //获取方法返回值类型
+        const char * returnType = method_copyReturnType(method);
+        NSString * returnTypeString = [NSString stringWithUTF8String:returnType];
+        [methodInfo setValue:returnTypeString forKey:@"returnTypeString"];
+
+        
+        //获取方法参数个数、每个参数的类型
+        int arguments = method_getNumberOfArguments(method);
+        if (arguments) {
+            //创建存储参数类型名的数组
+            NSMutableArray * methodArgumentTypes = [NSMutableArray array];
+            
+            for (int j = 0; j<arguments; j++) {
+                //获取每个参数的类型
+                char argumentType[256];
+                method_getArgumentType(method, j, argumentType, 256);
+                NSString * argumentTypeName = [NSString stringWithUTF8String:argumentType];
+                [methodArgumentTypes addObject:argumentTypeName];
+            }
+            
+            [methodInfo setObject:methodArgumentTypes forKey:@"methodArgumentTypes"];
+        }
+        
+        
+        //获取方法编码格式
+        const char* encoding = method_getTypeEncoding(method);
+        NSString * encodingName = [NSString stringWithUTF8String:encoding];
+        [methodInfo setValue:encodingName forKey:@"encodingName"];
+
+        
+        
+        DLog(@"方法名：%@,参数个数：%d,编码方式：%@",methodName,
+              arguments,
+              [NSString stringWithUTF8String:encoding]);
+        
+        [methodlists addObject:methodInfo];
+        
+    }
+    
+    free(methodList);
+    
+    return methodlists;
+}
+
 
 @end

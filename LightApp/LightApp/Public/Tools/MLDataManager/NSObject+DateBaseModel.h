@@ -17,8 +17,6 @@
 @interface NSObject (DateBaseModel)
 
 
-
-
 /**
  * @brief 属性列表
  */
@@ -35,5 +33,10 @@
  */
 - (NSMutableArray*)propertyVaules;
 
+
+/**
+ * @brief 获取对象的所有方法信息
+ */
+-(NSArray *)mothodLists;
 
 @end

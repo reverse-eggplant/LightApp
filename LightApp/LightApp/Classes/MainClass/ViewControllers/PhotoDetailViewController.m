@@ -67,7 +67,6 @@
     
     NSLog(@"propertyNames = %@",testmodel.propertyNames);
     
-    NSLog(@"propertyVaules = %@",testmodel.propertyVaules);
     
     NSLog(@"propertiesDic = %@",testmodel.propertiesDic);
     
