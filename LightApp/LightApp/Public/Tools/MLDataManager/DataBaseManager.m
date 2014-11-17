@@ -138,6 +138,8 @@ static dispatch_once_t once = 0;
  */
 + (void) saveDataWithMDBModel:(NSObject *) dbModel
 {
+    [[[[self class] defaultDataBaseManager] dataBase]open];
+
     NSString * modelClassName = NSStringFromClass([dbModel class]);
 
     //编辑插入语句
@@ -168,7 +170,8 @@ static dispatch_once_t once = 0;
     [AppDelegate showStatusWithText:@"插入一条数据" duration:2.0];
     [[[[self class] defaultDataBaseManager] dataBase] executeUpdate:query withArgumentsInArray:arguments];
     
-    
+    [[[[self class] defaultDataBaseManager] dataBase]close];
+
 }
 
 
@@ -183,11 +186,17 @@ static dispatch_once_t once = 0;
                               keyName:(NSString *)keyName
                              keyValue:(id) keyValue
 {
+    [[[[self class] defaultDataBaseManager] dataBase]open];
+
     NSString * query = [NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ = %@",modelName,keyName,keyValue];
     DLog(@"%@",query);
+    
 
     if ([[[[self class] defaultDataBaseManager] dataBase] executeUpdate:query])
         [AppDelegate showStatusWithText:@"删除数据成功" duration:2.0];
+    
+    [[[[self class] defaultDataBaseManager] dataBase]close];
+
 }
 
 
@@ -200,26 +209,36 @@ static dispatch_once_t once = 0;
                   keyName:(NSString *)keyName
                  keyValue:(id) keyValue
 {
+    [[[[self class] defaultDataBaseManager] dataBase]open];
     
     NSString * modelClassName = NSStringFromClass([dbModel class]);
 
     NSMutableString * query = [NSMutableString stringWithFormat:@"UPDATE %@ SET",modelClassName];
+    NSMutableArray * arguments = [NSMutableArray array];
     
     //遍历对象的属性数组，并从新赋值
     for (NSString *  propertyName in dbModel.propertyNames) {
-        [query appendFormat:@" %@ = %@,",propertyName,[dbModel valueForKeyPath:propertyName]];
+        if ([dbModel valueForKey:propertyName]) {
+            [query appendFormat:@" %@ =  ?,",propertyName];
+            [arguments addObject:[dbModel valueForKey:propertyName]];
+
+        }
     }
     [query appendString:@")"];
-    [query appendFormat:@" WHERE %@ = %@",keyName,keyValue];
+    [query appendFormat:@" WHERE %@ = ?",keyName];
+    [arguments addObject:keyValue];
 
     NSString * sql = [NSString stringWithFormat:@"%@",query];
     sql = [sql stringByReplacingOccurrencesOfString:@",)" withString:@""];
     DLog(@"%@",sql);
     
+    
+    
    
-    if([[[[self class] defaultDataBaseManager] dataBase] executeUpdate:sql])
+    if([[[[self class] defaultDataBaseManager] dataBase] executeUpdate:sql withArgumentsInArray:arguments])
          [AppDelegate showStatusWithText:@"成功修改了数据" duration:2.0];
     
+    [[[[self class] defaultDataBaseManager] dataBase]close];
 
 }
 
@@ -237,7 +256,8 @@ static dispatch_once_t once = 0;
                        keyValue:(id)keyValue
                           limit:(int) limit
 {
-    
+    [[[[self class] defaultDataBaseManager] dataBase]open];
+
     if (!keyName) {
         [AppDelegate showStatusWithText:@"缺少查询条件！" duration:2.0];
         return nil;
@@ -257,12 +277,14 @@ static dispatch_once_t once = 0;
     [temp2 appendFormat:@"FROM %@",modelName];
     
     
-    NSMutableString * query = [NSMutableString stringWithFormat:@"%@",[temp2 stringByAppendingFormat:@" WHERE %@ = %@ ORDER BY %@ DESC limit %d",keyName,keyValue,keyName,limit]];
+    NSMutableString * query = [NSMutableString stringWithFormat:@"%@",[temp2 stringByAppendingFormat:@" WHERE %@ = ? ORDER BY %@ DESC limit %d",keyName,keyName,limit]];
     
+    NSMutableArray * arguments = [NSMutableArray array];
+    [arguments addObject:keyValue];
     DLog(@"%@",query);
 
-    //根据查询语句饿查询
-    FMResultSet * set = [[[[self class] defaultDataBaseManager] dataBase] executeQuery:query];
+    //根据查询语句查询
+    FMResultSet * set = [[[[self class] defaultDataBaseManager] dataBase] executeQuery:query withArgumentsInArray:arguments];
     NSMutableArray * results = [NSMutableArray arrayWithCapacity:[set columnCount]];
     
     
@@ -281,6 +303,8 @@ static dispatch_once_t once = 0;
     [set close];
     DLog(@"results.count = %lu",(unsigned long)results.count);
     
+    [[[[self class] defaultDataBaseManager] dataBase]close];
+
     return results;
     
 

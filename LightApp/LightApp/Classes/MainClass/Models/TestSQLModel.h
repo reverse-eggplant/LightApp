@@ -13,6 +13,6 @@
 
 @property (nonatomic,strong)NSNumber * number;
 
-@property (nonatomic,copy)NSData * data;
+@property (nonatomic,strong)NSData * data;
 
 @end

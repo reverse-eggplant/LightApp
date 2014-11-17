@@ -65,9 +65,9 @@
     testmodel.number = [NSNumber numberWithInt:30];
     testmodel.data = [@"data" dataUsingEncoding:NSUTF8StringEncoding];
     
-    NSLog(@"propertyNames = %@",testmodel.propertyNames);
+//    NSLog(@"propertyNames = %@",testmodel.propertyNames);
     
-    
+
     NSLog(@"propertiesDic = %@",testmodel.propertiesDic);
     
     
@@ -99,7 +99,7 @@
 
 - (void)findData{
     
-    [DataBaseManager findWithModelName:@"TestSQLModel" keyName:@"number" keyValue:[NSNumber numberWithInt:30] limit:30];
+    [DataBaseManager findWithModelName:@"TestSQLModel" keyName:@"number" keyValue:[NSNumber numberWithInt:40] limit:30];
 }
 
 - (void)didReceiveMemoryWarning {
