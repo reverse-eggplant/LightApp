@@ -166,7 +166,7 @@ static dispatch_once_t once = 0;
     [query appendFormat:@" %@ VALUES%@",
      [keys stringByReplacingOccurrencesOfString:@",)" withString:@")"],
      [values stringByReplacingOccurrencesOfString:@",)" withString:@")"]];
-    NSLog(@"%@",query);
+    DLog(@"%@",query);
     [AppDelegate showStatusWithText:@"插入一条数据" duration:2.0];
     [[[[self class] defaultDataBaseManager] dataBase] executeUpdate:query withArgumentsInArray:arguments];
     

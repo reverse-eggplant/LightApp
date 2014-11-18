@@ -13,6 +13,7 @@
 - (NSDictionary *)propertiesDic {
 
     NSMutableDictionary *props = [NSMutableDictionary dictionary];
+    
     unsigned int outCount, i;
     
     objc_property_t * properties = class_copyPropertyList([self class], &outCount);
