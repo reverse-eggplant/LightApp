@@ -1,5 +1,5 @@
 dependencies: \
-  /Users/malong/Desktop/LightApp/LightApp/LightApp/Classes/MainClass/ViewControllers/PhotoTableViewController.m \
+  /Users/malong/Desktop/LightApp/LightApp/LightApp/Public/Tools/DeviceIdentifier/DeviceMemory.m \
   /Users/malong/Desktop/LightApp/LightApp/LightApp/LightApp.pch \
   /Users/malong/Desktop/LightApp/LightApp/LightApp/AppDelegate.h \
   /Users/malong/Desktop/LightApp/LightApp/LightApp/Public/Base/ViewControllerManager/SXViewConrollerManager.h \
@@ -14,9 +14,4 @@ dependencies: \
   /Users/malong/Desktop/LightApp/LightApp/LightApp/Public/Tools/ConstantsDefine.h \
   /Users/malong/Desktop/LightApp/LightApp/LightApp/Public/Tools/MLDataManager/DataBaseManager.h \
   /Users/malong/Desktop/LightApp/LightApp/LightApp/Public/Tools/MLDataManager/NSObject+DateBaseModel.h \
-  /Users/malong/Desktop/LightApp/LightApp/LightApp/Classes/MainClass/ViewControllers/PhotoTableViewController.h \
-  /Users/malong/Desktop/LightApp/LightApp/LightApp/Classes/MainClass/Views/PictureDataTableViewCell.h \
-  /Users/malong/Desktop/LightApp/LightApp/LightApp/Classes/MainClass/Models/PictureArrayDataSource.h \
-  /Users/malong/Desktop/LightApp/LightApp/LightApp/Classes/MainClass/Models/Store.h \
-  /Users/malong/Desktop/LightApp/LightApp/LightApp/Classes/MainClass/Models/Photo.h \
   /Users/malong/Desktop/LightApp/LightApp/LightApp/Public/Tools/DeviceIdentifier/DeviceMemory.h

@@ -232,8 +232,6 @@ static dispatch_once_t once = 0;
     sql = [sql stringByReplacingOccurrencesOfString:@",)" withString:@""];
     DLog(@"%@",sql);
     
-    
-    
    
     if([[[[self class] defaultDataBaseManager] dataBase] executeUpdate:sql withArgumentsInArray:arguments])
          [AppDelegate showStatusWithText:@"成功修改了数据" duration:2.0];

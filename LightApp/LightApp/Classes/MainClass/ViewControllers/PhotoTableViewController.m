@@ -17,7 +17,7 @@
 #import "Store.h"
 #import "Photo.h"
 
-
+#import "DeviceMemory.h"
 
 static NSString * const PhotoTableViewControllerCellIdentifier = @"PhotoTableViewControllerCellIdentifier";
 
@@ -43,7 +43,12 @@ static NSString * const PhotoTableViewControllerCellIdentifier = @"PhotoTableVie
     self.navigationItem.title = @"Pictures";
     [self setupTableView];
     
+    [DeviceMemory logMemoryInfo];
+    
+    DLog(@"[DeviceMemory usedMemory] = %lf",[DeviceMemory usedMemory]);
+    DLog(@"[DeviceMemory availableMemory] = %lf",[DeviceMemory availableMemory]);
 
+    ;
     
 }
 
