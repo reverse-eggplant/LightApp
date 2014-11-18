@@ -99,6 +99,7 @@
 + (NSString *)getOpenUdId{
     
 //    unsigned char result[16];
+//    
 //    const char *cStr = [[[NSProcessInfo processInfo] globallyUniqueString] UTF8String];
 //    CC_MD5( cStr, strlen(cStr), result );
 //    

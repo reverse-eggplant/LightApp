@@ -42,6 +42,10 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window setRootViewController:navigationController];
     
+    [USER_DEFAULT setValue:@"text" forKey:@"TEST"];
+    
+    DLog(@"userdefault = %@",[NSUserDefaultManager dictionaryRepresentation]);
+    
     [self setNavigationBar];
     [self setStatusWindowAndStatusLabel];
 

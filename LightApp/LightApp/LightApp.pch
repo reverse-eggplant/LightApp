@@ -20,6 +20,7 @@
 #import "ConstantsDefine.h"
 #import "DataBaseManager.h"
 #import "NSObject+DateBaseModel.h"
+#import "MLDataManager.h"
 
 #endif
 

@@ -84,6 +84,7 @@
 		FB02E13C1A0FA40B00414A36 /* ArchiveDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArchiveDataBase.m; sourceTree = "<group>"; };
 		FB2629041A1A46FC0073404B /* DeviceMemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceMemory.h; sourceTree = "<group>"; };
 		FB2629051A1A46FC0073404B /* DeviceMemory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceMemory.m; sourceTree = "<group>"; };
+		FB2629391A1AF74A0073404B /* MLDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLDataManager.h; sourceTree = "<group>"; };
 		FBD24DFD1A18D6A60086D8D5 /* DeviceIdentifierTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceIdentifierTool.h; sourceTree = "<group>"; };
 		FBD24DFE1A18D6A60086D8D5 /* DeviceIdentifierTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceIdentifierTool.m; sourceTree = "<group>"; };
 		FBD24E001A18D6A60086D8D5 /* OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDID.h; sourceTree = "<group>"; };
@@ -219,6 +220,7 @@
 		FB02E13A1A0FA40B00414A36 /* MLDataManager */ = {
 			isa = PBXGroup;
 			children = (
+				FB2629391A1AF74A0073404B /* MLDataManager.h */,
 				FB02E13B1A0FA40B00414A36 /* ArchiveDataBase.h */,
 				FB02E13C1A0FA40B00414A36 /* ArchiveDataBase.m */,
 				FBE0B8101A109A1F000180C9 /* NSUserDefaultManager.h */,

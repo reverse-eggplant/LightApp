@@ -14,6 +14,9 @@ dependencies: \
   /Users/malong/Desktop/LightApp/LightApp/LightApp/Public/Tools/ConstantsDefine.h \
   /Users/malong/Desktop/LightApp/LightApp/LightApp/Public/Tools/MLDataManager/DataBaseManager.h \
   /Users/malong/Desktop/LightApp/LightApp/LightApp/Public/Tools/MLDataManager/NSObject+DateBaseModel.h \
+  /Users/malong/Desktop/LightApp/LightApp/LightApp/Public/Tools/MLDataManager/MLDataManager.h \
+  /Users/malong/Desktop/LightApp/LightApp/LightApp/Public/Tools/MLDataManager/ArchiveDataBase.h \
+  /Users/malong/Desktop/LightApp/LightApp/LightApp/Public/Tools/MLDataManager/NSUserDefaultManager.h \
   /Users/malong/Desktop/LightApp/LightApp/LightApp/Public/Tools/AFNManager/AFSessionManagerClient.h \
   /Users/malong/Desktop/LightApp/LightApp/LightApp/Public/Thirds/AFNetworking/AFNetworking/AFHTTPSessionManager.h \
   /Users/malong/Desktop/LightApp/LightApp/LightApp/Public/Thirds/AFNetworking/AFNetworking/AFURLSessionManager.h \
