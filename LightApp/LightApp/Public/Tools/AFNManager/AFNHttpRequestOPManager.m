@@ -1,13 +1,12 @@
 //
-//  BCEBasePost.m
-//  BCE
+//  AFNHttpRequestOPManager.m
+//  LightApp
 //
-//  Created by malong on 14-7-6.
-//  Copyright (c) 2014年 sanxian. All rights reserved.
+//  Created by malong on 14/11/20.
+//  Copyright (c) 2014年 malong. All rights reserved.
 //
 
-#import "AFNRequestManager.h"
-
+#import "AFNHttpRequestOPManager.h"
 #import "AppDelegate.h"
 
 #import "AFSessionManagerClient.h"
@@ -15,24 +14,29 @@
 #import "AFSessionManagerClient.h"
 #import "JSONKit.h"
 
-
-
-
+@implementation AFNHttpRequestOPManager
 #define BASEURL   @"http://api.breadtrip.com/"
 
-@implementation AFNRequestManager
-
-
-- (instancetype)initWithAttributes:(NSDictionary *)attributes {
-    self = [super init];
-    if (!self) {
-        return nil;
-    }
++ (instancetype)sharedManager{
     
-    return self;
+    static AFNHttpRequestOPManager *_shareAFNHttpRequestOPManager = nil;
+    
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        
+        _shareAFNHttpRequestOPManager = [[self alloc] initWithBaseURL:[NSURL URLWithString:BASEURL]];
+        _shareAFNHttpRequestOPManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/css",@"text/plain", nil];
+
+//        [_shareAFNHttpRequestOPManager.requestSerializer setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+//        [_sharedClient.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        
+    });
+    
+    return _shareAFNHttpRequestOPManager;
 }
 
-#pragma mark -- get method
+
 
 + (void)checkNetWorkStatus{
     
@@ -43,7 +47,6 @@
      *  AFNetworkReachabilityStatusReachableViaWiFi = 2,   // 局域网络Wifi
      */
     // 如果要检测网络状态的变化, 必须要用检测管理器的单例startMoitoring
-    
     
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     // 检测网络连接的单例,网络变化时的回调方法
@@ -58,11 +61,12 @@
     
 }
 
+
 + (void)getInfoWithSubUrl:(NSString *)subUrl
                parameters:(NSDictionary *)Parameters
                     block:(void (^)(NSDictionary * resultDic, NSError *error))block{
     
-
+    
     [[self class] checkNetWorkStatus];
     
     
@@ -70,7 +74,7 @@
     NSLog(@"parameter = %@",Parameters);
     
     [[AFSessionManagerClient sharedClient] GET:[NSString stringWithFormat:@"%@%@",BASEURL,subUrl] parameters:Parameters success:^(NSURLSessionDataTask * __unused task, id JSON) {
-
+        
         NSDictionary * resultDic = (NSDictionary *)JSON;
         NSLog(@"resultDic = %@",resultDic);
         
@@ -93,7 +97,7 @@
 + (NSURLSessionDataTask *)globalTimelinePostsWithBlock:(void (^)(NSArray *posts, NSError *error))block {
     
     [[self class] checkNetWorkStatus];
-
+    
     return [[AFSessionManagerClient sharedClient] GET:@"stream/0/posts/stream/global" parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"json = %@",JSON);
         
@@ -105,7 +109,7 @@
         if (block) {
             block([NSArray array], error);
         }
-
+        
     }];
 }
 
@@ -116,18 +120,12 @@
                      block:(void (^)(NSDictionary *resultDic, NSError *error))block{
     
     [[self class] checkNetWorkStatus];
-
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/css",@"text/plain", nil];
-
     
- 
-
     NSLog(@"urlstring = %@",[NSString stringWithFormat:@"%@%@",BASEURL,suburl]);
     NSLog(@"parameter = %@",Parameters);
     
-
-    [manager POST:[NSString stringWithFormat:@"%@%@",BASEURL,suburl] parameters:Parameters
+    
+    [[[self class] sharedManager] POST:[NSString stringWithFormat:@"%@%@",BASEURL,suburl] parameters:Parameters
           success:^(AFHTTPRequestOperation *operation,id responseObject) {
               
               NSDictionary * resultDic = [[[NSString alloc]initWithData:operation.responseData encoding:NSUTF8StringEncoding] objectFromJSONString];
@@ -141,14 +139,14 @@
                   }
               }
               
-
-    }failure:^(AFHTTPRequestOperation *operation,NSError *error) {
+              
+          }failure:^(AFHTTPRequestOperation *operation,NSError *error) {
               NSLog(@"error = %@",error.description);
               if (block) {
                   block(nil,error);
               }
-    }];
-
+          }];
+    
 }
 
 + (void)postWithParameters:(NSDictionary *)Parameters
@@ -157,55 +155,52 @@
                      names:(NSArray *)names
                      video:(NSData *)video
                      block:(void (^)(NSDictionary *resultDic, NSError *error))block{
-    
     [[self class] checkNetWorkStatus];
-
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/css",@"text/plain", nil];
-
+    
+    
     NSLog(@"Parameters = %@",Parameters);
-    [manager POST:[NSString stringWithFormat:@"%@%@",BASEURL,suburl]
-       parameters:Parameters
-constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [[[self class] sharedManager]  POST:[NSString stringWithFormat:@"%@%@",BASEURL,suburl]
+                             parameters:Parameters
+              constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                  
+                  for (int i = 0; i<imageDatas.count; i++) {
+                      [formData appendPartWithFileData:[imageDatas objectAtIndex:i]
+                                                  name:[names objectAtIndex:i]
+                                              fileName:[NSString stringWithFormat:@"%@.jpg",[names objectAtIndex:i]]
+                                              mimeType:@"image/jpeg"];
+                      
+                  }
+                  
+                  
+                  if (video) {
+                      [formData appendPartWithFileData:video
+                                                  name:@"video"
+                                              fileName:[NSString stringWithFormat:@"%@.mp4",@"video"]
+                                              mimeType:@"video/mp4"];
+                  }
+                  
+                  
+              } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                  
+                  NSDictionary * resultDic = [[[NSString alloc]initWithData:operation.responseData encoding:NSUTF8StringEncoding] objectFromJSONString];
+                  
+                  NSLog(@"operation.request.URL = %@\nresultDic = %@",operation.request.URL,resultDic);
+                  
+                  if (block && resultDic) {
+                      block(resultDic,nil);
+                  }
+                  
+              } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                  
+                  NSLog(@"error = %@",error.description);
+                  if (block) {
+                      block(nil,error);
+                  }
+                  
+              }];
     
-    for (int i = 0; i<imageDatas.count; i++) {
-        [formData appendPartWithFileData:[imageDatas objectAtIndex:i]
-                                    name:[names objectAtIndex:i]
-                                fileName:[NSString stringWithFormat:@"%@.jpg",[names objectAtIndex:i]]
-                                mimeType:@"image/jpeg"];
-        
-    }
     
- 
-    if (video) {
-        [formData appendPartWithFileData:video
-                                    name:@"video"
-                                fileName:[NSString stringWithFormat:@"%@.mp4",@"video"]
-                                mimeType:@"video/mp4"];
-    }
-    
-    
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSDictionary * resultDic = [[[NSString alloc]initWithData:operation.responseData encoding:NSUTF8StringEncoding] objectFromJSONString];
-        
-        NSLog(@"operation.request.URL = %@\nresultDic = %@",operation.request.URL,resultDic);
-        
-        if (block && resultDic) {
-            block(resultDic,nil);
-        }
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    
-        NSLog(@"error = %@",error.description);
-        if (block) {
-            block(nil,error);
-        }
-        
-    }];
-
-
 }
 + (void)getInfoWithSubUrl:(NSString*)subUrl
                     block:(void (^)(NSDictionary * resultDic, NSError *error))block{
@@ -223,16 +218,16 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
      {
          NSLog(@"data = %@",data);
-//         NSLog(@"response.string = %@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-
-        NSLog(@"response.string = %@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSDictionary * resultDic = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] objectFromJSONString];
-        
-        if (block && resultDic) {
-            block(resultDic,nil);
-        }
+         //         NSLog(@"response.string = %@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
          
-    }];
+         NSLog(@"response.string = %@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+         NSDictionary * resultDic = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] objectFromJSONString];
+         
+         if (block && resultDic) {
+             block(resultDic,nil);
+         }
+         
+     }];
     
 }
 
@@ -241,8 +236,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 + (void)cancelRequest{
     
     NSLog(@"cancelRequest");
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager.operationQueue cancelAllOperations];
+    [[[[self class] sharedManager] operationQueue] cancelAllOperations];
     
 }
 

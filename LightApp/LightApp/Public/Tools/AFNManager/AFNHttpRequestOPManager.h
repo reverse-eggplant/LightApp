@@ -1,17 +1,17 @@
 //
-//  BCEBasePost.h
-//  BCE
+//  AFNHttpRequestOPManager.h
+//  LightApp
 //
-//  Created by malong on 14-7-6.
-//  Copyright (c) 2014年 sanxian. All rights reserved.
+//  Created by malong on 14/11/20.
+//  Copyright (c) 2014年 malong. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "AFHTTPRequestOperationManager.h"
 #import "AFNetworking.h"
 
-@interface AFNRequestManager : NSObject
+@interface AFNHttpRequestOPManager : AFHTTPRequestOperationManager
 
-- (instancetype)initWithAttributes:(NSDictionary *)attributes;
++ (instancetype)sharedManager;
 
 /*
  *brief 检查网络状态
@@ -85,5 +85,6 @@
  *brief 取消网络请求
  */
 + (void)cancelRequest;
+
 
 @end
