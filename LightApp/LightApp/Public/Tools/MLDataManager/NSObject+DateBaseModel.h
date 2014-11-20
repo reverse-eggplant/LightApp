@@ -33,7 +33,6 @@ runtime是属于OC的底层, 可以进行一些非常底层的操作(用OC是无
 
 @interface NSObject (DateBaseModel)
 
-
 /**
  * @brief 属性列表
  */

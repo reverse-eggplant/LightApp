@@ -34,7 +34,6 @@
         self.items = items;
         self.identifier = identifier;
         self.configureCellBlock = [configureCellBlock copy];
-        
     }
     
     return self;

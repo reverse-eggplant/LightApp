@@ -43,16 +43,10 @@ static NSString * const PhotoTableViewControllerCellIdentifier = @"PhotoTableVie
     self.navigationItem.title = @"Pictures";
     [self setupTableView];
     
-    [DeviceMemory logMemoryInfo];
-    
-    DLog(@"[DeviceMemory usedMemory] = %lf",[DeviceMemory usedMemory]);
-    DLog(@"[DeviceMemory availableMemory] = %lf",[DeviceMemory availableMemory]);
-
-    ;
-    
 }
 
 - (void)setupTableView{
+    
     TableViewCellConfigureBlock  tableViewCellConfigureBlock = ^(PictureDataTableViewCell * pictureDataTableViewCell,Photo * picture){
         [pictureDataTableViewCell configurePictureData:picture];
     };
