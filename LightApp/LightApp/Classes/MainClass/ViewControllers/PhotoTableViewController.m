@@ -72,7 +72,7 @@ static NSString * const PhotoTableViewControllerCellIdentifier = @"PhotoTableVie
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    [SXViewConrollerManager pushToTheViewController:@"PhotoDetailViewController" transferInfo:[self.pictureArrayDataSource itemAtIndexPath:indexPath]];
+    [SXViewConrollerManager pushToTheViewController:@"ConcurrentViewController" transferInfo:[self.pictureArrayDataSource itemAtIndexPath:indexPath]];
     
 }
 

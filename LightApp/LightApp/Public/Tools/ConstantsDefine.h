@@ -54,6 +54,8 @@
 #define BACKGROUNDBLOCK(block) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
 #define MAINBLOCK(block) dispatch_async(dispatch_get_main_queue(),block)
 
+//设置View的tag属性
+#define VIEWWITHTAG(_OBJECT, _TAG)    [_OBJECT viewWithTag : _TAG]
 
 
 #endif
