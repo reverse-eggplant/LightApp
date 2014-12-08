@@ -32,7 +32,10 @@
 }
 
 + (void)openPan{
-    [[[self class] sharedVCMInstance] setUserPan:YES];
+
+    if ([[[self class] sharedVCMInstance] panRecognizer]) {
+        [[[[[self class]sharedVCMInstance] navigationController] view]addGestureRecognizer:[[[self class] sharedVCMInstance] panRecognizer]];
+    }
     
 }
 
@@ -40,32 +43,21 @@
     
     if ([[[self class] sharedVCMInstance] panRecognizer]) {
         [[[[[self class]sharedVCMInstance] navigationController] view]removeGestureRecognizer:[[[self class] sharedVCMInstance] panRecognizer]];
-        [[[self class] sharedVCMInstance] setUserPan:NO];
     }
 }
 
 - (void)setRootController:(UIViewController*)rootViewController{
-    if (_rootViewController) {
-        _rootViewController = nil;
-    }
+    _rootViewController = nil;
     _rootViewController = rootViewController;
     
-    if (IOS7 && _UserPan) {
+    if (IOS7 && ![[[self class] sharedVCMInstance] panRecognizer]) {
         //获取navigationController
-        if (![[[self class] sharedVCMInstance] panRecognizer]) {
-            self.navigationController = self.rootViewController.navigationController;
-            
-            self.panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
-            self.navigationController.delegate = self;
-            self.animator = [Animator new];
-        }
+        self.navigationController = self.rootViewController.navigationController;
         
-        [self.navigationController.view addGestureRecognizer:_panRecognizer];
-
+        self.panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+        self.navigationController.delegate = self;
+        self.animator = [Animator new];
     }
-    
-
-
 }
 
 - (UIViewController *)rootViewController{

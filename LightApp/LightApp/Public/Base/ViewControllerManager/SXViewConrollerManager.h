@@ -18,7 +18,6 @@
 
 @property (nonatomic, weak) UINavigationController * navigationController;
 
-@property (nonatomic,assign)BOOL UserPan;    //是否启用pan手势
 
 @property (nonatomic, strong) Animator* animator;    //把动画效果设置为类的一个属性，实现多个操作中共享
 

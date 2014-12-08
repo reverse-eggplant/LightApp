@@ -64,6 +64,7 @@ static NSString * const KrStarAppCellIdentifier = @"KrStarAppCellIdentifier";
     self.navigationController.navigationBarHidden = NO;
 
     [SXViewConrollerManager closePan];
+    
     [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
     [self.mm_drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
     
@@ -76,6 +77,7 @@ static NSString * const KrStarAppCellIdentifier = @"KrStarAppCellIdentifier";
 {
     [super viewWillDisappear:animated];
     [_tableHeadView stopAnimating];
+    
     [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
     [self.mm_drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeNone];
     [SXViewConrollerManager openPan];
@@ -419,6 +421,7 @@ static NSString * const KrStarAppCellIdentifier = @"KrStarAppCellIdentifier";
         detailVC.newsId = [[[[_starApps[indexPath.row] valueForKey:@"link"] $split:@"/p/"] objectAtIndex:1] substringToIndex:6];
     }
     detailVC.detailType = kDETAILLeftBack;
+    
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
