@@ -43,14 +43,14 @@
  *归档字典到指定文件路径下
  */
 +(void)archiveWithtSuffix:(NSString *) suffix
-            dataSourceDic:(NSDictionary *) sourceDic
+            dataSourceDic:(NSObject *) sourceData
                  fileName:(NSString *)fileName;
 
 
 /*
  *从指定文件路径下解档出字典对象
  */
-+(NSDictionary *)unArchiveWithSuffix:(NSString *) suffix
++(NSObject*)unArchiveWithSuffix:(NSString *) suffix
                             fileName:(NSString *)fileName;
 
 

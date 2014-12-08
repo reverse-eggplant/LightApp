@@ -7,6 +7,7 @@
 //
 
 #import "NSObject+DateBaseModel.h"
+#import <objc/runtime.h>
 
 @implementation NSObject (DateBaseModel)
 
@@ -152,6 +153,17 @@
     
     return methodlists;
 }
+
+static char flashColorKey;
+
+- (void) setFlashColor:(UIColor *) flashColor{
+    objc_setAssociatedObject(self, &flashColorKey, flashColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIColor *) getFlashColor{
+    return objc_getAssociatedObject(self, &flashColorKey);
+}
+
 
 
 @end

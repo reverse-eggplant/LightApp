@@ -35,7 +35,7 @@ static NSString * const AFAppDotNetAPIBaseURLString = @"http://115.28.85.95:7654
     dispatch_once(&onceToken, ^{
         
         _sharedClient = [[AFSessionManagerClient alloc] initWithBaseURL:[NSURL URLWithString:AFAppDotNetAPIBaseURLString]];
-        _sharedClient.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/css",@"text/plain", nil];
+        _sharedClient.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/css",@"text/plain", @"text/xml",nil];
         _sharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
 
 //        [_sharedClient.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];

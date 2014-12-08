@@ -54,7 +54,7 @@
 
 //归档存储数据
 +(void)archiveWithtSuffix:(NSString *)suffix
-                   dataSourceDic:(NSDictionary *) sourceDic
+                   dataSourceDic:(NSObject *) sourceData
                         fileName:(NSString *)fileName
 {
     [[NSFileManager defaultManager] createDirectoryAtPath:CACHEFILEPATH(@"myFolder")
@@ -65,14 +65,14 @@
     NSString *strFilename= [CACHEFILEPATH(@"myFolder")
                             stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-%@.dat",fileName,suffix]];
     
-    [NSKeyedArchiver archiveRootObject:sourceDic toFile:strFilename];
+    [NSKeyedArchiver archiveRootObject:sourceData toFile:strFilename];
     
 }
 
 
 
 //取缓存
-+(NSDictionary *)unArchiveWithSuffix:(NSString *) suffix
++(NSObject *)unArchiveWithSuffix:(NSString *) suffix
                             fileName:(NSString *)fileName
 {
     
@@ -87,8 +87,9 @@
     BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:strFileName];
     if (blHave)
     {
-        NSDictionary *arrNewsList = [NSDictionary dictionaryWithDictionary:[NSKeyedUnarchiver unarchiveObjectWithFile:strFileName]];
-        return arrNewsList;
+        NSObject * dataObj = [NSKeyedUnarchiver unarchiveObjectWithFile:strFileName];
+        
+        return dataObj;
     }
     else
     {

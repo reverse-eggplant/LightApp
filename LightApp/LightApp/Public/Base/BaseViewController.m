@@ -16,8 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = UIColorFromRGB(0Xededed);
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -50,7 +49,6 @@
 - (void)PopToLastViewController{
     
     [SXViewConrollerManager clearDelegate];
-
     [self.navigationController popViewControllerAnimated:YES];
     
 
@@ -58,13 +56,13 @@
 - (void)PopToRootViewController{
     
     [SXViewConrollerManager clearDelegate];
-  
-    
     [self.navigationController popToRootViewControllerAnimated:YES];
 
 }
 
-
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+}
 /*
 #pragma mark - Navigation
 

@@ -3,14 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>application-identifier</key>
-	<string>3SPFDP9HQL.lanou3g.LightApp</string>
+	<string>3SPFDP9HQL.com.lanou3g.63kr</string>
 	<key>com.apple.developer.team-identifier</key>
 	<string>3SPFDP9HQL</string>
 	<key>get-task-allow</key>
 	<true/>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>3SPFDP9HQL.lanou3g.LightApp</string>
+		<string>3SPFDP9HQL.com.lanou3g.63kr</string>
 	</array>
 </dict>
 </plist>

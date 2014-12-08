@@ -13,14 +13,25 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
 #import "AppDelegate.h"
+#import "KrAppDelegate.h"
+
 #import "SXViewConrollerManager.h"
 #import "BaseViewController.h"
 #import "BaseTableViewController.h"
+#import "KrNetWorkConnector.h"
+#import "CommonHeader.h"
+#import "AFNHttpRequestOPManager.h"
+#import "UIKit+AFNetworking.h"
+#import "SharedSingleton.h"
 #import "FMDB.h"
 #import "ConstantsDefine.h"
 #import "DataBaseManager.h"
 #import "NSObject+DateBaseModel.h"
 #import "MLDataManager.h"
+#import "MMDrawerController.h"
+#import "UIViewController+MMDrawerController.h"
+#import "ConciseKit.h"
+#import "CKMacros.h"
 
 #endif
 

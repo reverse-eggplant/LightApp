@@ -26,10 +26,8 @@ typedef enum{
  */
 
 @interface DataBaseManager : NSObject
-{
-    NSString * _dataBasePath;  //数据库路径
-}
 
+@property (nonatomic,copy)NSString * dataBasePath;     //数据库路径
 @property (nonatomic, readonly) FMDatabase * dataBase;  // 数据库操作对象，数据库建立后，存在此处
 
 
@@ -40,18 +38,48 @@ typedef enum{
 
 
 /**
- * @brief 创建数据库
+ * @brief 判断名为tableName的表是否存
+ */
++ (BOOL) isTableExist:(NSString *)tableName;
+
+/**
+ *brief 判断是否已经存在某条数据
+ */
++ (BOOL) isModelExist:(NSString *)modelName
+              keyName:(NSString *) keyName
+             keyValue:(id)keyValue;
+
+/**
+ * @brief 根据model对象创建数据库
  */
 + (void) createDataBaseWithDBModel:(NSObject *)dbModel;
 
+/**
+ * @brief 删除数据库
+ */
++ (BOOL) deleteDataBase;
+
+/**
+ * @brief 删除表
+ *
+ * @param tableName 需要删除的表
+ */
++ (BOOL) deleteTheTable:(NSString *)tableName;
 
 
 /**
- * @brief 保存一条用户记录
+ * @brief 清除表
  *
- * @param dbModel 需要保存的数据模型
+ * @param tableName 需要清除的表名
  */
-+ (void) saveDataWithMDBModel:(NSObject *) dbModel;
+- (BOOL) eraseTheTable:(NSString *)tableName;
+
+/**
+ * @brief 插入一条用户记录
+ *
+ * @param dbModel 需要插入的数据模型
+ */
++ (void) insertDataWithMDBModel:(NSObject *) dbModel;
 
 
 
@@ -78,7 +106,28 @@ typedef enum{
                    keyValue:(id) keyValue;
 
 
+/**
+ * @brief 获得表的数据条数
+ * @param modelName 需要查询的表名
+ * @param keyName   需要查询的键名
+ * @param keyValue  需要查询的键值
+ */
++ (int)findTheTableItemNumberWithModelName:(NSString *)modelName
+                                   keyName:(NSString *) keyName
+                                  keyValue:(id)keyValue;
 
+
+/**
+ * @brief 获得表的数据
+ *
+ * @param modelName 需要查询的表名
+ */
++ (NSMutableArray *)findTheTableItemWithModelName:(NSString *)modelName;
+
+/**
+ * @brief 查询获取表modelName的数据
+ */
++ (NSMutableArray *)findTheTableItemWithModelName:(NSString *)modelName sql:(NSString *)sql;
 /**
  * @brief 模拟分页查找数据。取modelId大于某个值以后的limit个数据
  *

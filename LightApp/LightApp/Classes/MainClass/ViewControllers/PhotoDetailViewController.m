@@ -73,7 +73,7 @@
     
     [DataBaseManager createDataBaseWithDBModel:testmodel];
     
-    [DataBaseManager saveDataWithMDBModel:testmodel];
+    [DataBaseManager insertDataWithMDBModel:testmodel];
     
 }
 

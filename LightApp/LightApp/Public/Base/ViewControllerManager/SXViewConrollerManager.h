@@ -18,12 +18,19 @@
 
 @property (nonatomic, weak) UINavigationController * navigationController;
 
+@property (nonatomic,assign)BOOL UserPan;    //是否启用pan手势
+
 @property (nonatomic, strong) Animator* animator;    //把动画效果设置为类的一个属性，实现多个操作中共享
 
 @property (nonatomic, strong) UIPercentDrivenInteractiveTransition* interactionController;
 
+@property (nonatomic, strong)UIPanGestureRecognizer* panRecognizer;
 
 + (SXViewConrollerManager *)sharedVCMInstance;
+
++ (void)openPan;   //打开手势
+
++ (void)closePan;  //关闭手势
 
 + (void)clearDelegate;   //清空代理
 

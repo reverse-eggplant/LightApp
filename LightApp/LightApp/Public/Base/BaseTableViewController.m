@@ -10,18 +10,45 @@
 
 @interface BaseTableViewController ()
 
+
 @end
 
 @implementation BaseTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    UIView *backView = [[UIView alloc] init];
+    [backView setBackgroundColor:UIColorFromRGB(0Xededed)];
+    [self.tableView setBackgroundView:backView];
+    [self setupRefresh];
+
+}
+
+- (void)setupRefresh
+{
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // 设置文字(也可以不设置,默认的文字在MJRefreshConst中修改)
+    self.tableView.headerPullToRefreshText = @"下拉刷新";
+    self.tableView.headerReleaseToRefreshText = @"释放开始刷新";
+    self.tableView.headerRefreshingText = @"正在刷新...";
+    
+    self.tableView.footerPullToRefreshText = @"上拉加载";
+    self.tableView.footerReleaseToRefreshText = @"松开加载更";
+    self.tableView.footerRefreshingText = @"正在加载...";
+}
+
+- (void)headerRereshing{
+
+}
+
+- (void)footerRereshing{
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -55,10 +82,10 @@
 
 
 
-
 #pragma mark 视图控制器跳转
 - (void)PopToLastViewController{
     
+
     [SXViewConrollerManager clearDelegate];
 
     [self.navigationController popViewControllerAnimated:YES];
@@ -66,7 +93,7 @@
     
 }
 - (void)PopToRootViewController{
-    
+
     [SXViewConrollerManager clearDelegate];
     [self.navigationController popToRootViewControllerAnimated:YES];
     

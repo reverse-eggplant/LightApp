@@ -24,7 +24,6 @@ runtime是属于OC的底层, 可以进行一些非常底层的操作(用OC是无
  
  */
 #import <Foundation/Foundation.h>
-#import <objc/runtime.h>
 
 
 /**
@@ -54,5 +53,10 @@ runtime是属于OC的底层, 可以进行一些非常底层的操作(用OC是无
  * @brief 获取对象的所有方法信息
  */
 -(NSArray *)mothodLists;
+
+
+- (void) setFlashColor:(UIColor *) flashColor;
+- (UIColor *) getFlashColor;
+
 
 @end

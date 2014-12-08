@@ -31,6 +31,18 @@
     
 }
 
++ (void)openPan{
+    [[[self class] sharedVCMInstance] setUserPan:YES];
+    
+}
+
++ (void)closePan{
+    
+    if ([[[self class] sharedVCMInstance] panRecognizer]) {
+        [[[[[self class]sharedVCMInstance] navigationController] view]removeGestureRecognizer:[[[self class] sharedVCMInstance] panRecognizer]];
+        [[[self class] sharedVCMInstance] setUserPan:NO];
+    }
+}
 
 - (void)setRootController:(UIViewController*)rootViewController{
     if (_rootViewController) {
@@ -38,17 +50,22 @@
     }
     _rootViewController = rootViewController;
     
-    if (IOS7) {
+    if (IOS7 && _UserPan) {
         //获取navigationController
-        self.navigationController = self.rootViewController.navigationController;
+        if (![[[self class] sharedVCMInstance] panRecognizer]) {
+            self.navigationController = self.rootViewController.navigationController;
+            
+            self.panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+            self.navigationController.delegate = self;
+            self.animator = [Animator new];
+        }
         
-        UIPanGestureRecognizer* panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
-        [self.navigationController.view addGestureRecognizer:panRecognizer];
-        self.navigationController.delegate = self;
-    
-        self.animator = [Animator new];
+        [self.navigationController.view addGestureRecognizer:_panRecognizer];
+
     }
- 
+    
+
+
 }
 
 - (UIViewController *)rootViewController{
@@ -72,9 +89,8 @@
 + (void)popToLastViewController
 {
     [SXViewConrollerManager clearDelegate];
-    [[[[self class] sharedVCMInstance] rootViewController].navigationController popToRootViewControllerAnimated:YES];
-    
-    
+    [[[[self class] sharedVCMInstance] rootViewController].navigationController popViewControllerAnimated:YES];
+
 }
 
 + (void)popToRootViewController
@@ -128,6 +144,8 @@
 - (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC
 {
     if (operation == UINavigationControllerOperationPop) {
+        if (self.navigationController.navigationBarHidden == YES) {
+        }
         //返回一个UIViewControllerAnimatedTransitioning对象，实现过渡动画效果
         return self.animator;
     }

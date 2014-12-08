@@ -7,15 +7,13 @@
 //
 
 #import "AFNHttpRequestOPManager.h"
-#import "AppDelegate.h"
-
 #import "AFSessionManagerClient.h"
 #import "AFHTTPRequestOperationManager.h"
 #import "AFSessionManagerClient.h"
 #import "JSONKit.h"
 
+
 @implementation AFNHttpRequestOPManager
-#define BASEURL   @"http://api.breadtrip.com/"
 
 + (instancetype)sharedManager{
     
@@ -52,44 +50,83 @@
     // 检测网络连接的单例,网络变化时的回调方法
     [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         if(status == AFNetworkReachabilityStatusNotReachable){
+
+            DLog(@"网络连接已断开，请检查您的网络！");
             
-            NSLog(@"网络连接已断开，请检查您的网络！");
-            
-            return ;
+        }else if(AFNetworkReachabilityStatusReachableViaWiFi == status){
+            DLog(@"网络链接！");
+
         }
     }];
     
 }
 
 
+- (void)showMyProgressHUDWith:(NSString *)text
+{
+    if (_myProgressHUD || ![[SXViewConrollerManager sharedVCMInstance] rootViewController]) {
+        return;
+    }
+    if (!_myProgressHUD) {
+        _myProgressHUD = [[MBProgressHUD alloc] initWithView:[[SXViewConrollerManager sharedVCMInstance] rootViewController].view];
+        _myProgressHUD.mode = MBProgressHUDModeIndeterminate;
+        _myProgressHUD.animationType = MBProgressHUDAnimationZoom;
+    }
+    
+    if (text) {
+        _myProgressHUD.labelText = text;
+        
+    }else{
+        _myProgressHUD.labelText = @"请稍等...";
+        
+    }
+    [[[SXViewConrollerManager sharedVCMInstance] rootViewController].view addSubview:_myProgressHUD];
+    [[[SXViewConrollerManager sharedVCMInstance] rootViewController].view bringSubviewToFront:_myProgressHUD];
+    
+    [_myProgressHUD show:YES];
+    
+}
+
+- (void)hideMyprogressHud{
+    if (!_myProgressHUD || ![[SXViewConrollerManager sharedVCMInstance] rootViewController]) {
+        return;
+    }
+    [_myProgressHUD setHidden:YES];
+    [_myProgressHUD removeFromSuperview];
+    _myProgressHUD = nil;
+    
+}
+
 + (void)getInfoWithSubUrl:(NSString *)subUrl
                parameters:(NSDictionary *)Parameters
-                    block:(void (^)(NSDictionary * resultDic, NSError *error))block{
+                    block:(void (^)(id result, NSError *error))block{
     
-    
+    [[[self class]sharedManager] showMyProgressHUDWith:@"请稍候"];
     [[self class] checkNetWorkStatus];
     
     
     NSLog(@"url = %@",[NSString stringWithFormat:@"%@%@",BASEURL,subUrl]);
+    
     NSLog(@"parameter = %@",Parameters);
     
-    [[AFSessionManagerClient sharedClient] GET:[NSString stringWithFormat:@"%@%@",BASEURL,subUrl] parameters:Parameters success:^(NSURLSessionDataTask * __unused task, id JSON) {
+    [[[self class] sharedManager] GET:[NSString stringWithFormat:@"%@%@",BASEURL,subUrl] parameters:Parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary * resultDic = (NSDictionary *)JSON;
-        NSLog(@"resultDic = %@",resultDic);
-        
-        if (block && resultDic) {
-            block(resultDic,nil);
+        id  result = [[[NSString alloc]initWithData:operation.responseData encoding:NSUTF8StringEncoding] objectFromJSONString];
+        NSLog(@"resultDic = %@",result);
+        if (block && result) {
+            block(result,nil);
         }
-        
-    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
-        
+        [[[self class]sharedManager] hideMyprogressHud];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"error = %@",error.description);
         if (block) {
             block(nil,error);
         }
-        
+        [[[self class]sharedManager] hideMyprogressHud];
+
     }];
+    
+
     
 }
 
@@ -205,7 +242,7 @@
 + (void)getInfoWithSubUrl:(NSString*)subUrl
                     block:(void (^)(NSDictionary * resultDic, NSError *error))block{
     
-    [[self class]checkNetWorkStatus];
+    [[self class] checkNetWorkStatus];
     
     NSURLRequest * request = [[NSURLRequest alloc]initWithURL:
                               [NSURL URLWithString:
@@ -217,7 +254,6 @@
                                        queue:[[NSOperationQueue alloc] init]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
      {
-         NSLog(@"data = %@",data);
          //         NSLog(@"response.string = %@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
          
          NSLog(@"response.string = %@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);

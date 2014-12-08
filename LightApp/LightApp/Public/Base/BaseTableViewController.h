@@ -7,13 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TableViewArrayDataSource.h"
+#import "MJRefresh.h"
 
 @interface BaseTableViewController : UITableViewController
 
+@property (nonatomic)NSUInteger page;
+@property (nonatomic,strong)TableViewArrayDataSource * tableViewArrayDataSource;
 
 - (void)PopToLastViewController;    //返回上级控制器
 
 - (void)PopToRootViewController;    //返回根控制器
+
 
 
 @end

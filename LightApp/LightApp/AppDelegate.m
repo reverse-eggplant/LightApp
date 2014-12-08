@@ -34,6 +34,7 @@
     return [UIApplication sharedApplication].delegate;
 }
 
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
@@ -92,17 +93,13 @@
 #pragma mark   设置导航栏
 - (void)setNavigationBar{
 
-    [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0x067AB5)]; //ios7以后，使用这个方法设置导航栏的颜色
+    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0x0083d5)]; //ios7以后，使用这个方法设置导航栏的颜色
     
-    //真机调试时，ios7.1里面不能通过如下方法translucent设置为NO
+//真机调试时，ios7.1里面不能通过如下方法translucent设置为NO
 //    [UINavigationBar appearance].translucent = NO;    //关闭模糊效果
     
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];   //给返回按钮着色
-
-//    //修改返回图片
-//    [[UINavigationBar appearance] setBackIndicatorImage:[UIImage imageNamed:@"back_btn.png"]];
-//    [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"back_btn.png"]];
-//    
     
 /*
     使用导航栏的titleTextAttributes属性来定制导航栏的文字风格。在text attributes字典中使用如下一些key，可以指定字体、文字颜色、文字阴影色以及文字阴影偏移量：
