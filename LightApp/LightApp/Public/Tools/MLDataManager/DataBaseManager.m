@@ -144,15 +144,14 @@ static dispatch_once_t once = 0;
 
 
 /**
- * @brief 根据model对象创建数据库
+ * @brief 根据model对象名称创建数据库
  */
-+ (void) createDataBaseWithDBModel:(NSObject *)dbModel
++ (void) createDataBaseWithDBModelName:(NSString *)modelName
 {
     
-    NSString * modelClassName = NSStringFromClass([dbModel class]);
+    NSObject * dbModel = [[NSClassFromString(modelName) alloc]init];
     
-    
-    BOOL existTable = [DataBaseManager isTableExist:modelClassName];
+    BOOL existTable = [DataBaseManager isTableExist:modelName];
     
     if (existTable) {
         // TODO:是否更新数据库
@@ -160,7 +159,7 @@ static dispatch_once_t once = 0;
     } else {
         // TODO: 插入新的数据库
         
-        NSMutableString * sql = [NSMutableString stringWithFormat:@"CREATE TABLE %@ (",modelClassName];
+        NSMutableString * sql = [NSMutableString stringWithFormat:@"CREATE TABLE %@ (",modelName];
         
         for (NSString *  propertyName in dbModel.propertyNames) {
             [sql appendFormat:@"%@,",propertyName];
@@ -249,7 +248,7 @@ static dispatch_once_t once = 0;
 
     NSString * modelClassName = NSStringFromClass([dbModel class]);
     if (![DataBaseManager isTableExist:modelClassName]) {
-        [DataBaseManager createDataBaseWithDBModel:dbModel];
+        [DataBaseManager createDataBaseWithDBModelName:modelClassName];
     }
     //编辑插入语句
     NSMutableString * query = [NSMutableString stringWithFormat:@"INSERT INTO %@",modelClassName];

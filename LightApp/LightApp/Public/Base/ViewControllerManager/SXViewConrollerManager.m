@@ -42,6 +42,7 @@
 + (void)closePan{
     
     if ([[[self class] sharedVCMInstance] panRecognizer]) {
+        
         [[[[[self class]sharedVCMInstance] navigationController] view]removeGestureRecognizer:[[[self class] sharedVCMInstance] panRecognizer]];
     }
 }

@@ -59,18 +59,6 @@ static NSString * const LeftTableViewCellIdentifier = @"LeftTableViewCellIdentif
     
 }
 
-/**
- 当视图将要消失时，隐藏导航栏，轮播图停止播放，打开视图控制器的拖拽返回手势，并关闭mm_drawerController的拖拽手势
- */
--(void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
-    [self.mm_drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeNone];
-    [SXViewConrollerManager openPan];
-    
-    DLog(@"Center will disappear");
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -188,9 +176,9 @@ static NSString * const LeftTableViewCellIdentifier = @"LeftTableViewCellIdentif
         [offlineOperation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
             float progress = totalBytesRead / (float)9137069;
             //        DLog(@"totalBytesRead = %llu = totalBytesRead",totalBytesRead);
-            [weakOffLienButton setTitle:$str(@"离线%.0f%%",progress*100) forState:UIControlStateNormal];
+            [weakOffLienButton setTitle:$str(@"离线%.0f%%",MIN(progress*100, 100)) forState:UIControlStateNormal];
             
-            [weakOffLienButton setTitle:$str(@"离线%.0f%%",progress*100) forState:UIControlStateHighlighted];
+            [weakOffLienButton setTitle:$str(@"离线%.0f%%",MIN(progress*100, 100)) forState:UIControlStateHighlighted];
             
         }];
         
@@ -234,6 +222,10 @@ static NSString * const LeftTableViewCellIdentifier = @"LeftTableViewCellIdentif
  */
 - (void)seting
 {
+    [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
+    [self.mm_drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeNone];
+    [SXViewConrollerManager openPan];
+    
     [self.mm_drawerController presentViewController:[[UINavigationController alloc] initWithRootViewController:[[LOSetViewController alloc] init]] animated:YES completion:nil];
 
 }

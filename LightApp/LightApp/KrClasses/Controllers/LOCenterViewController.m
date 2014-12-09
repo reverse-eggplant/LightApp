@@ -13,8 +13,6 @@
 #import "CenterTableViewCell.h"
 #import "CenterTableHeadView.h"
 #import "CenterTopics.h"
-
-
 #import "KrStarAppTableViewCell.h"
 #import "KrStarAppInfo.h"
 
@@ -25,12 +23,12 @@
     CenterTableHeadView * _tableHeadView;
     TableViewArrayDataSource * krStarAppsDataSource;
     
-    int tableNewsNumber;   // 数据库新闻条数
+    int tableNewsNumber; //数据库新闻条数
 }
 
-@property (nonatomic,strong)NSMutableArray * CenterListModels;  //新闻列表数组
+@property (nonatomic,strong)NSMutableArray * CenterListModels; //新闻列表数组
 
-@property (nonatomic,strong)NSMutableArray * starApps;          //氪星人的应用
+@property (nonatomic,strong)NSMutableArray * starApps; //氪星人的应用
 
 @end
 
@@ -44,9 +42,9 @@ static NSString * const KrStarAppCellIdentifier = @"KrStarAppCellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupNaviAndTableView];
-    if(![DataBaseManager isTableExist:@"KrStarAppInfo"])[DataBaseManager createDataBaseWithDBModel:[[KrStarAppInfo alloc]init]];
+    if(![DataBaseManager isTableExist:@"KrStarAppInfo"])[DataBaseManager  createDataBaseWithDBModelName:@"KrStarAppInfo"];
     
-    if(![DataBaseManager isTableExist:@"CenterTopics"])[DataBaseManager createDataBaseWithDBModel:[[CenterTopics alloc]init]];
+    if(![DataBaseManager isTableExist:@"CenterTopics"])[DataBaseManager createDataBaseWithDBModelName:@"CenterTopics"];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self headerRereshing];
@@ -54,7 +52,6 @@ static NSString * const KrStarAppCellIdentifier = @"KrStarAppCellIdentifier";
     });
 
 }
-
 
 /**
  当视图出现时，显示导航栏，轮播图开始播放，关闭视图控制器的拖拽返回手势，并打开mm_drawerController的拖拽手势
@@ -81,6 +78,7 @@ static NSString * const KrStarAppCellIdentifier = @"KrStarAppCellIdentifier";
     [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
     [self.mm_drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeNone];
     [SXViewConrollerManager openPan];
+    
     
     DLog(@"Center will disappear");
 }
@@ -117,7 +115,6 @@ static NSString * const KrStarAppCellIdentifier = @"KrStarAppCellIdentifier";
     //中心页新闻列表cell注册
     TableViewCellConfigureBlock  tableViewCellConfigureBlock = ^(CenterTableViewCell * cell,CenterTopics * centerListModel){
         [cell setNewsInfo:centerListModel];
-        
     };
     self.CenterListModels = $marrnew;
     self.tableViewArrayDataSource = [[TableViewArrayDataSource alloc]initWithItems:self.CenterListModels identifier:CenterTableViewCellIdentifier configureCellBlock:tableViewCellConfigureBlock];

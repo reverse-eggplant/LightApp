@@ -68,15 +68,6 @@ static NSString * RightCommentTableViewCellID = @"RightCommentTableViewCellID";
 /**
  当视图将要消失时，隐藏导航栏，轮播图停止播放，打开视图控制器的拖拽返回手势，并关闭mm_drawerController的拖拽手势
  */
--(void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
-    [self.mm_drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeNone];
-    [SXViewConrollerManager openPan];
-    
-    DLog(@"Center will disappear");
-}
 
 - (void)setupRefresh{return;}; //弃用MJRefresh
 
@@ -171,6 +162,11 @@ static NSString * RightCommentTableViewCellID = @"RightCommentTableViewCellID";
 #pragma mark 按钮方法
 - (void)logoButtonAction
 {
+    [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
+    [self.mm_drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeNone];
+    [SXViewConrollerManager openPan];
+    
+    
     [self presentViewController:[[UINavigationController alloc] initWithRootViewController:[[LOLogViewController alloc]init]] animated:YES completion:nil];
 }
 /**
@@ -274,6 +270,11 @@ static NSString * RightCommentTableViewCellID = @"RightCommentTableViewCellID";
     LODetailViewController * detailVC = [[LODetailViewController alloc]init];
     detailVC.detailType = kDETAILRightClose;
     detailVC.webViewUrl = [sideBarDic valueForKey:@"url"];
+    
+    [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
+    [self.mm_drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeNone];
+    [SXViewConrollerManager openPan];
+    
     [self presentViewController:detailVC animated:YES completion:nil];
 }
 
@@ -296,6 +297,10 @@ static NSString * RightCommentTableViewCellID = @"RightCommentTableViewCellID";
         detailViewController.commentInfo = comments[indexPath.row];
     }
     detailViewController.detailType = kDETAILLeftClose;
+    
+    [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
+    [self.mm_drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeNone];
+    [SXViewConrollerManager openPan];
     
     [self presentViewController:[[UINavigationController alloc] initWithRootViewController:detailViewController] animated:YES completion:nil];
     

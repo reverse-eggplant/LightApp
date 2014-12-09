@@ -76,6 +76,7 @@
     [detailWebView.scrollView addSubview:krImageView];
     detailWebView.delegate = self;
     detailWebView.opaque = NO;
+    detailWebView.scalesPageToFit = YES;
     detailWebView.scrollView.backgroundColor = [UIColor colorWithPatternImage:LOADPNGIMAGE(@"swipe-layout-bg")];
     self.view.backgroundColor = [UIColor colorWithPatternImage:LOADPNGIMAGE(@"swipe-layout-bg")];
     [self.view addSubview:detailWebView];

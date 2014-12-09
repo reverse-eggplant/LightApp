@@ -71,7 +71,7 @@
     NSLog(@"propertiesDic = %@",testmodel.propertiesDic);
     
     
-    [DataBaseManager createDataBaseWithDBModel:testmodel];
+    [DataBaseManager createDataBaseWithDBModelName:@"TestSQLModel"];
     
     [DataBaseManager insertDataWithMDBModel:testmodel];
     

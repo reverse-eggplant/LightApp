@@ -50,9 +50,9 @@ typedef enum{
              keyValue:(id)keyValue;
 
 /**
- * @brief 根据model对象创建数据库
+ * @brief 根据model对象名称创建数据库
  */
-+ (void) createDataBaseWithDBModel:(NSObject *)dbModel;
++ (void) createDataBaseWithDBModelName:(NSString *)modelName;
 
 /**
  * @brief 删除数据库

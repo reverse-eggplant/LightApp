@@ -68,7 +68,7 @@
 #define CELL_FONT(s)     [UIFont fontWithName:@"Helvetica" size:s]
 #define CELL_BOLDFONT(s) [UIFont fontWithName:@"Helvetica-Bold" size:s]
 
-//页码
+//每页条数
 #define PER_PAGE 15
 
 //资源
